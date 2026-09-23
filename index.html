@@ -53,7 +53,6 @@
             color: #ffffff !important;
         }
 
-        /* Animación de movimiento continuo en el borde de la barra de navegación */
         @keyframes cyberBorderMove {
             0% { border-color: rgba(0, 255, 204, 0.3); box-shadow: 0 4px 20px rgba(0, 255, 204, 0.15); }
             33% { border-color: rgba(157, 0, 255, 0.5); box-shadow: 0 4px 25px rgba(157, 0, 255, 0.25); }
@@ -74,7 +73,6 @@
             animation: cyberFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* NUEVO: Animación para el aviso de acceso denegado */
         @keyframes alertGlow {
             0% { box-shadow: 0 0 20px rgba(255, 0, 127, 0.2), inset 0 0 10px rgba(255, 0, 127, 0.1); border-color: rgba(255, 0, 127, 0.4); }
             50% { box-shadow: 0 0 40px rgba(255, 0, 127, 0.4), inset 0 0 20px rgba(255, 0, 127, 0.2); border-color: rgba(255, 0, 127, 0.8); }
@@ -167,7 +165,6 @@
         <!-- LOBBY -->
         <section id="tab-lobby" class="tab-content space-y-6 hidden">
             
-            <!-- WIDGET DE FECHA Y HORA EN TIEMPO REAL -->
             <div class="glass-panel px-4 py-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 border-[#00ffcc]/30 shadow-[0_0_20px_rgba(0,255,204,0.1)]">
                 <div class="flex items-center space-x-2 text-xs font-orbitron text-gray-300">
                     <span class="w-2 h-2 rounded-full bg-[#00ffcc] animate-ping"></span>
@@ -206,46 +203,34 @@
                 </div>
             </div>
 
-            <!-- Ecosistema Completo de Servicios -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-indigo-500/30">
                     <div class="w-10 h-10 rounded-2xl bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#5865F2] flex items-center justify-center shadow-[0_0_10px_rgba(88,101,242,0.2)]">
                         <i class="fa-solid fa-robot text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Bots a Medida</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Desarrollo y programación de bots personalizados con funciones únicas y comandos avanzados.
-                    </p>
+                    <p class="text-gray-400 text-xs leading-relaxed">Desarrollo y programación de bots personalizados con funciones únicas y comandos avanzados.</p>
                 </div>
-
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-purple-500/30">
                     <div class="w-10 h-10 rounded-2xl bg-[#9d00ff]/20 border border-[#9d00ff]/50 flex items-center justify-center text-[#00ffcc] shadow-[0_0_10px_rgba(157,0,255,0.2)]">
                         <i class="fa-solid fa-server text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Servidores desde Cero</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Configuración completa de canales, roles, permisos y estética profesional para comunidades.
-                    </p>
+                    <p class="text-gray-400 text-xs leading-relaxed">Configuración completa de canales, roles, permisos y estética profesional para comunidades.</p>
                 </div>
-
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-[#00ffcc]/30">
                     <div class="w-10 h-10 rounded-2xl bg-[#00ffcc]/20 border border-[#00ffcc]/50 flex items-center justify-center text-[#00ffcc] shadow-[0_0_10px_rgba(0,255,204,0.2)]">
                         <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Renovación Total</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Actualizamos y modernizamos servidores ya existentes para mejorar su actividad y seguridad.
-                    </p>
+                    <p class="text-gray-400 text-xs leading-relaxed">Actualizamos y modernizamos servidores ya existentes para mejorar su actividad y seguridad.</p>
                 </div>
-
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-pink-500/30">
                     <div class="w-10 h-10 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] flex items-center justify-center shadow-[0_0_10px_rgba(255,0,127,0.2)]">
                         <i class="fa-solid fa-headset text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Soporte Técnico</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Asistencia continua y resolución rápida de cualquier incidencia en tus bots y servidores.
-                    </p>
+                    <p class="text-gray-400 text-xs leading-relaxed">Asistencia continua y resolución rápida de cualquier incidencia en tus bots y servidores.</p>
                 </div>
             </div>
         </section>
@@ -280,17 +265,13 @@
                         <span class="text-gray-300">Estado: <strong class="text-white">Fuera de línea</strong></span>
                     </div>
                 </div>
-
                 <div class="relative w-full aspect-video bg-black/80 rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center p-6 text-center space-y-3 group">
                     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,127,0.1)_0,transparent_70%)]"></div>
                     <div class="w-16 h-16 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/40 flex items-center justify-center text-[#ff007f] text-2xl shadow-[0_0_20px_rgba(255,0,127,0.3)] group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-play"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-base sm:text-lg">Próximas Emisiones en Directo</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm max-w-md">
-                        Sigue los directos de programación de bots y configuración de servidores en mis canales oficiales.
-                    </p>
-                    
+                    <p class="text-gray-400 text-xs sm:text-sm max-w-md">Sigue los directos de programación de bots y configuración de servidores en mis canales oficiales.</p>
                     <div class="flex flex-wrap justify-center gap-3 pt-2">
                         <a href="https://twitch.tv" target="_blank" class="px-5 py-2.5 bg-[#9146FF] hover:bg-[#772ce8] text-white font-orbitron text-xs font-bold rounded-xl transition hover:scale-105 flex items-center space-x-2 shadow-[0_0_15px_rgba(145,70,255,0.3)] cursor-pointer">
                             <i class="fa-brands fa-twitch text-sm"></i><span>Twitch</span>
@@ -343,17 +324,106 @@
             </div>
         </section>
 
+        <!-- TÉRMINOS Y CONDICIONES / AVISO LEGAL (LEGAL TAB) -->
+        <section id="tab-legal" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl space-y-6 border-[#00ffcc]/40 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                <div class="border-b border-white/10 pb-4">
+                    <span class="text-[#00ffcc] font-orbitron text-[10px] font-bold uppercase tracking-widest block mb-1">Marco Legal y Cumplimiento RGPD</span>
+                    <h2 class="font-orbitron text-2xl font-black text-white glow-text">Términos, Condiciones y Aviso Legal</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-orbitron font-bold text-white text-sm">1. Datos Identificativos (LSSI-CE)</h3>
+                    <p>En cumplimiento de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico, se informa que MODEOS EL OBI es un proyecto dedicado al desarrollo de bots de Discord y configuración de comunidades digitales.</p>
+
+                    <h3 class="font-orbitron font-bold text-white text-sm">2. Objeto y Condiciones de Uso</h3>
+                    <p>La presente plataforma web regula el acceso y uso de los servicios ofrecidos por MODEOS EL OBI. La utilización de este sitio web atribuye la condición de usuario e implica la aceptación plena de todas las disposiciones incluidas en este Aviso Legal.</p>
+
+                    <h3 class="font-orbitron font-bold text-white text-sm">3. Protección de Datos (RGPD / LOPD-GDD)</h3>
+                    <p>Los datos recopilados a través de la autenticación de Discord u otros formularios se tratan de forma confidencial y segura. No se ceden datos a terceros salvo obligación legal. Puedes solicitar el acceso, rectificación o supresión de tus datos contactando a través de nuestros canales oficiales.</p>
+
+                    <h3 class="font-orbitron font-bold text-white text-sm">4. Política de Cookies</h3>
+                    <p>Este sitio web utiliza cookies técnicas necesarias para el funcionamiento del sistema de sesiones y opcionalmente cookies de análisis estadístico. Puedes modificar tus preferencias de cookies en cualquier momento desde el pie de página de la web.</p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end">
+                    <button onclick="switchTab('lobby')" class="px-5 py-2.5 bg-[#00ffcc]/20 hover:bg-[#00ffcc]/35 border border-[#00ffcc]/50 text-[#00ffcc] font-orbitron text-xs font-bold rounded-xl transition cursor-pointer">Volver al Lobby</button>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer con Fecha y Reloj integrados -->
-    <footer class="mt-auto border-t border-[#00ffcc]/20 bg-[#05050b]/90 py-6 px-4 text-center text-[10px] sm:text-xs font-orbitron space-y-2 z-30">
+    <!-- Footer con Fecha, Reloj y Enlaces Legales -->
+    <footer class="mt-auto border-t border-[#00ffcc]/20 bg-[#05050b]/90 py-6 px-4 text-center text-[10px] sm:text-xs font-orbitron space-y-3 z-30">
         <div class="flex flex-wrap items-center justify-center gap-3 text-gray-400">
             <span>SYS_DATE: <strong id="footer-date" class="text-purple-300">00/00/0000</strong></span>
             <span>•</span>
             <span>SYS_TIME: <strong id="footer-clock" class="text-[#00ffcc]">00:00:00</strong></span>
         </div>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-gray-400">
+            <button onclick="switchTab('legal')" class="hover:text-[#00ffcc] transition cursor-pointer">Términos y Condiciones</button>
+            <span>•</span>
+            <button onclick="switchTab('legal')" class="hover:text-[#00ffcc] transition cursor-pointer">Aviso Legal</button>
+            <span>•</span>
+            <button onclick="openCookieSettings()" class="hover:text-[#00ffcc] transition cursor-pointer text-purple-300">Configurar Cookies</button>
+        </div>
         <p class="text-white font-bold pt-1">MODEOS EL OBI BETA &copy; 2026</p>
     </footer>
+
+    <!-- BANNER DE COOKIES INFERIOR (OBLIGATORIO LEY) -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-[#080812]/98 backdrop-blur-2xl border-t border-[#00ffcc]/40 p-4 sm:p-5 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="space-y-1 text-left">
+                <h4 class="font-orbitron font-bold text-white text-xs sm:text-sm flex items-center">
+                    <i class="fa-solid fa-cookie-bite text-[#00ffcc] mr-2"></i>Política de Cookies y Privacidad
+                </h4>
+                <p class="text-gray-300 text-[11px] sm:text-xs max-w-3xl leading-relaxed">
+                    Utilizamos cookies propias y de terceros estrictamente necesarias para el correcto funcionamiento de la plataforma y la gestión de sesiones de usuario. Puedes aceptar todas o configurar tus preferencias.
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+                <button onclick="openCookieSettings()" class="px-4 py-2.5 bg-black/60 hover:bg-black/90 border border-white/20 text-gray-300 hover:text-white font-orbitron font-bold rounded-xl text-xs transition cursor-pointer">Configurar</button>
+                <button onclick="acceptAllCookies()" class="px-5 py-2.5 bg-[#00ffcc] hover:bg-[#00e6b8] text-black font-orbitron font-extrabold rounded-xl text-xs transition shadow-[0_0_15px_rgba(0,255,204,0.4)] cursor-pointer">Aceptar Todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIGURACIÓN DE COOKIES -->
+    <div id="cookie-settings-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl w-full max-w-lg space-y-6 border-[#00ffcc]/50 shadow-[0_0_30px_rgba(0,255,204,0.3)]">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <h3 class="font-orbitron text-base sm:text-lg font-bold text-white flex items-center">
+                    <i class="fa-solid fa-gear text-[#00ffcc] mr-2"></i>Panel de Configuración de Cookies
+                </h3>
+                <button onclick="closeCookieSettings()" class="text-gray-400 hover:text-white p-1 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1 text-xs text-gray-300">
+                <div class="p-3.5 bg-black/50 border border-white/10 rounded-2xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-orbitron font-bold text-white">Cookies Técnicas / Esenciales</span>
+                        <span class="px-2 py-0.5 bg-green-500/20 text-green-400 border border-green-500/40 rounded-md font-mono text-[10px]">Obligatorias</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">Necesarias para el funcionamiento de la web, mantenimiento de sesiones de Discord y almacenamiento de preferencias de consentimiento.</p>
+                </div>
+
+                <div class="p-3.5 bg-black/50 border border-white/10 rounded-2xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-orbitron font-bold text-white">Cookies Analíticas / Rendimiento</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="analytics-cookies-toggle" class="sr-only peer">
+                            <div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#00ffcc]"></div>
+                        </label>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">Permiten medir el tráfico y analizar el comportamiento de navegación para optimizar la experiencia en fase BETA.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2 border-t border-white/10">
+                <button onclick="saveCustomCookies()" class="w-full py-3 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-extrabold rounded-xl transition uppercase tracking-wider text-xs cursor-pointer shadow-[0_0_15px_rgba(157,0,255,0.4)]">Guardar Preferencias</button>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL DEV -->
     <div id="dev-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
@@ -368,7 +438,7 @@
         </div>
     </div>
 
-    <!-- NUEVO: MODAL / AVISO CYBERPUNK DE ACCESO DENEGADO A BOT DASHBOARD -->
+    <!-- MODAL DE ACCESO DENEGADO A BOT DASHBOARD -->
     <div id="auth-warning-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-lg hidden flex items-center justify-center p-4">
         <div class="glass-panel cyber-alert-box p-6 sm:p-10 rounded-3xl w-full max-w-md text-center space-y-6 relative overflow-hidden">
             <div class="absolute -right-16 -top-16 w-40 h-40 bg-[#ff007f]/20 rounded-full blur-2xl pointer-events-none"></div>
@@ -417,10 +487,43 @@
                 renderBotsGrid();
                 handleDiscordAuthRedirect();
                 startLiveDateTime();
+                checkCookieConsent();
             } catch (err) {
                 console.error("Error al inicializar la app:", err);
             }
         });
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('obi_cookie_consent');
+            if (!consent) {
+                const banner = document.getElementById('cookie-banner');
+                if(banner) banner.classList.remove('hidden');
+            }
+        }
+
+        function acceptAllCookies() {
+            localStorage.setItem('obi_cookie_consent', 'all');
+            const banner = document.getElementById('cookie-banner');
+            if(banner) banner.classList.add('hidden');
+        }
+
+        function openCookieSettings() {
+            const modal = document.getElementById('cookie-settings-modal');
+            if(modal) modal.classList.remove('hidden');
+        }
+
+        function closeCookieSettings() {
+            const modal = document.getElementById('cookie-settings-modal');
+            if(modal) modal.classList.add('hidden');
+        }
+
+        function saveCustomCookies() {
+            const analytics = document.getElementById('analytics-cookies-toggle').checked;
+            localStorage.setItem('obi_cookie_consent', JSON.stringify({ technical: true, analytics: analytics }));
+            closeCookieSettings();
+            const banner = document.getElementById('cookie-banner');
+            if(banner) banner.classList.add('hidden');
+        }
 
         function startLiveDateTime() {
             const updateDateTime = () => {
