@@ -53,6 +53,18 @@
             color: #ffffff !important;
         }
 
+        /* Animación de movimiento continuo en el borde de la barra de navegación */
+        @keyframes cyberBorderMove {
+            0% { border-color: rgba(0, 255, 204, 0.3); box-shadow: 0 4px 20px rgba(0, 255, 204, 0.15); }
+            33% { border-color: rgba(157, 0, 255, 0.5); box-shadow: 0 4px 25px rgba(157, 0, 255, 0.25); }
+            66% { border-color: rgba(255, 0, 127, 0.5); box-shadow: 0 4px 25px rgba(255, 0, 127, 0.25); }
+            100% { border-color: rgba(0, 255, 204, 0.3); box-shadow: 0 4px 20px rgba(0, 255, 204, 0.15); }
+        }
+
+        .moving-cyber-nav {
+            animation: cyberBorderMove 5s infinite linear;
+        }
+
         @keyframes cyberFadeIn {
             0% { opacity: 0; transform: translateY(8px) scale(0.99); filter: brightness(1.5); }
             100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
@@ -60,6 +72,17 @@
 
         .tab-animate {
             animation: cyberFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* NUEVO: Animación para el aviso de acceso denegado */
+        @keyframes alertGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 127, 0.2), inset 0 0 10px rgba(255, 0, 127, 0.1); border-color: rgba(255, 0, 127, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 127, 0.4), inset 0 0 20px rgba(255, 0, 127, 0.2); border-color: rgba(255, 0, 127, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 127, 0.2), inset 0 0 10px rgba(255, 0, 127, 0.1); border-color: rgba(255, 0, 127, 0.4); }
+        }
+
+        .cyber-alert-box {
+            animation: alertGlow 3s infinite ease-in-out;
         }
     </style>
 </head>
@@ -74,8 +97,8 @@
         <button onclick="closeBetaBanner()" class="text-gray-400 hover:text-white px-2 py-0.5 text-sm shrink-0 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- Navegación Superior -->
-    <nav class="w-full bg-[#05050b]/95 backdrop-blur-2xl border-b border-[#00ffcc]/20 px-3 sm:px-6 py-3 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-40">
+    <!-- Navegación Superior con Movimiento Neón Continuo -->
+    <nav class="w-full bg-[#05050b]/95 backdrop-blur-2xl border-b moving-cyber-nav px-3 sm:px-6 py-3 flex items-center justify-between z-40">
         <div class="flex items-center space-x-2 cursor-pointer group" onclick="switchTab('lobby')">
             <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#9d00ff] to-[#00ffcc] p-0.5 shadow-[0_0_20px_rgba(0,255,204,0.4)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <div class="w-full h-full bg-[#05050b] rounded-[10px] flex items-center justify-center">
@@ -151,12 +174,10 @@
                     <span>SISTEMA EN LÍNEA</span>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <!-- Fecha corta -->
                     <div class="flex items-center space-x-1.5 px-3 py-1 bg-black/50 border border-white/10 rounded-xl font-orbitron text-xs text-purple-300">
                         <i class="fa-regular fa-calendar text-xs"></i>
                         <span id="live-date" class="font-bold tracking-wider">00/00/0000</span>
                     </div>
-                    <!-- Reloj -->
                     <div class="flex items-center space-x-1.5 px-3 py-1 bg-black/50 border border-white/10 rounded-xl font-orbitron text-xs text-[#00ffcc]">
                         <i class="fa-regular fa-clock text-xs"></i>
                         <span id="live-clock" class="font-bold tracking-wider">00:00:00</span>
@@ -347,6 +368,36 @@
         </div>
     </div>
 
+    <!-- NUEVO: MODAL / AVISO CYBERPUNK DE ACCESO DENEGADO A BOT DASHBOARD -->
+    <div id="auth-warning-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-lg hidden flex items-center justify-center p-4">
+        <div class="glass-panel cyber-alert-box p-6 sm:p-10 rounded-3xl w-full max-w-md text-center space-y-6 relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-40 h-40 bg-[#ff007f]/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/60 text-[#ff007f] flex items-center justify-center text-2xl sm:text-3xl shadow-[0_0_25px_rgba(255,0,127,0.4)] animate-bounce">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            
+            <div class="space-y-2">
+                <span class="inline-block px-3 py-1 bg-[#ff007f]/20 border border-[#ff007f]/40 text-[#ff007f] text-[10px] font-orbitron font-bold tracking-widest uppercase rounded-full">
+                    Acceso Restringido
+                </span>
+                <h3 class="font-orbitron text-xl sm:text-2xl font-black text-white glow-text">Autenticación Requerida</h3>
+                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed px-2">
+                    Para acceder al <span class="text-[#00ffcc] font-bold">Dashboard Multi-Bot</span> y gestionar tus servidores, necesitas vincular tu cuenta de Discord.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button onclick="loginDiscord()" class="w-full py-3.5 bg-[#5865F2] hover:bg-[#4752C4] text-white font-orbitron font-extrabold rounded-2xl transition hover:scale-105 flex items-center justify-center space-x-2 text-xs cursor-pointer shadow-[0_0_20px_rgba(88,101,242,0.5)]">
+                    <i class="fa-brands fa-discord text-base"></i><span>Conectar con Discord</span>
+                </button>
+                <button onclick="closeAuthWarning()" class="w-full sm:w-auto px-5 py-3.5 bg-black/60 hover:bg-black/90 border border-white/20 text-gray-300 hover:text-white font-orbitron font-bold rounded-2xl transition text-xs cursor-pointer">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPT -->
     <script>
         let isDiscordLoggedIn = false;
@@ -365,30 +416,26 @@
                 switchTab('lobby');
                 renderBotsGrid();
                 handleDiscordAuthRedirect();
-                startLiveDateTime(); // Iniciar reloj y fecha en tiempo real
+                startLiveDateTime();
             } catch (err) {
                 console.error("Error al inicializar la app:", err);
             }
         });
 
-        // NUEVO: Función para actualizar la fecha corta y hora en tiempo real
         function startLiveDateTime() {
             const updateDateTime = () => {
                 const now = new Date();
                 
-                // Formato de fecha corta (DD/MM/YYYY)
                 const day = String(now.getDate()).padStart(2, '0');
                 const month = String(now.getMonth() + 1).padStart(2, '0');
                 const year = now.getFullYear();
                 const dateString = `${day}/${month}/${year}`;
 
-                // Formato de hora (HH:MM:SS)
                 const hours = String(now.getHours()).padStart(2, '0');
                 const minutes = String(now.getMinutes()).padStart(2, '0');
                 const seconds = String(now.getSeconds()).padStart(2, '0');
                 const timeString = `${hours}:${minutes}:${seconds}`;
                 
-                // Actualizar elementos en Lobby y Footer
                 const dateEl = document.getElementById('live-date');
                 const footerDateEl = document.getElementById('footer-date');
                 const clockEl = document.getElementById('live-clock');
@@ -457,7 +504,7 @@
 
         function switchTab(tabId) {
             if (tabId === 'dashboard' && !isDiscordLoggedIn) {
-                alert("🔒 Inicia sesión con Discord para desbloquear el Dashboard.");
+                openAuthWarning();
                 return;
             }
             if (tabId === 'devzone' && !isDevUnlocked) {
@@ -502,6 +549,16 @@
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openAuthWarning() {
+            const modal = document.getElementById('auth-warning-modal');
+            if(modal) modal.classList.remove('hidden');
+        }
+
+        function closeAuthWarning() {
+            const modal = document.getElementById('auth-warning-modal');
+            if(modal) modal.classList.add('hidden');
         }
 
         function renderBotsGrid() {
