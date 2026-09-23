@@ -125,7 +125,8 @@
         </div>
 
         <div class="flex items-center space-x-2">
-            <button onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
+            <!-- Botón DEV superior con ID para poder ocultarlo si se agotan los intentos -->
+            <button id="dev-trigger-btn" onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
                 <i class="fa-solid fa-shield-halved text-xs"></i><span class="font-orbitron text-[10px] sm:text-xs">DEV</span>
             </button>
             <button onclick="loginDiscord()" id="discord-login-btn" class="px-2.5 sm:px-3 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(88,101,242,0.3)]">
@@ -199,13 +200,6 @@
                         <span>Gestionar Bots</span><i class="fa-solid fa-robot"></i>
                     </button>
                 </div>
-            </div>
-
-            <!-- Botón de prueba para forzar el banner de cookies -->
-            <div class="text-center pt-2">
-                <button onclick="resetCookieConsentTest()" class="px-4 py-2 bg-purple-900/40 hover:bg-purple-900/70 border border-purple-500/50 text-purple-300 text-xs font-orbitron rounded-xl transition cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
-                    <i class="fa-solid fa-cookie mr-1.5"></i>Forzar / Mostrar Banner de Cookies de Prueba
-                </button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -329,27 +323,36 @@
             </div>
         </section>
 
-        <!-- TÉRMINOS Y CONDICIONES / AVISO LEGAL -->
+        <!-- AVISO LEGAL Y CONDICIONES (PÁGINA UNIFICADA) -->
         <section id="tab-legal" class="tab-content hidden space-y-6">
             <div class="glass-panel p-6 sm:p-10 rounded-3xl space-y-6 border-[#00ffcc]/40 text-xs sm:text-sm text-gray-300 leading-relaxed">
                 <div class="border-b border-white/10 pb-4">
-                    <span class="text-[#00ffcc] font-orbitron text-[10px] font-bold uppercase tracking-widest block mb-1">Marco Legal y Cumplimiento RGPD</span>
-                    <h2 class="font-orbitron text-2xl font-black text-white glow-text">Términos, Condiciones y Aviso Legal</h2>
+                    <span class="text-[#00ffcc] font-orbitron text-[10px] font-bold uppercase tracking-widest block mb-1">Marco Legal, RGPD y Condiciones de Uso</span>
+                    <h2 class="font-orbitron text-2xl font-black text-white glow-text">Aviso Legal y Condiciones</h2>
                 </div>
 
-                <div class="space-y-4">
-                    <h3 class="font-orbitron font-bold text-white text-sm">1. Datos Identificativos (LSSI-CE)</h3>
-                    <p>En cumplimiento de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico, se informa que MODEOS EL OBI es un proyecto dedicado al desarrollo de bots de Discord y configuración de comunidades digitales.</p>
+                <div class="space-y-5">
+                    <div>
+                        <h3 class="font-orbitron font-bold text-white text-sm mb-1">1. Datos Identificativos (Aviso Legal)</h3>
+                        <p>En cumplimiento de la Ley 34/2002 (LSSI-CE), se informa que <strong>MODEOS EL OBI</strong> es un proyecto independiente enfocado al desarrollo de bots de Discord, configuración integral de comunidades y soporte técnico digital.</p>
+                    </div>
 
-                    <h3 class="font-orbitron font-bold text-white text-sm">2. Objeto y Condiciones de Uso</h3>
-                    <p>La presente plataforma web regula el acceso y uso de los servicios ofrecidos por MODEOS EL OBI. La utilización de este sitio web atribuye la condición de usuario e implica la aceptación plena de todas las disposiciones incluidas en este Aviso Legal.</p>
+                    <div>
+                        <h3 class="font-orbitron font-bold text-white text-sm mb-1">2. Términos y Condiciones de Uso</h3>
+                        <p>El acceso y uso de esta plataforma atribuye la condición de usuario e implica la aceptación total de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los servicios ofrecidos, absteniéndose de realizar actividades ilícitas o que puedan dañar los sistemas de la web.</p>
+                    </div>
 
-                    <h3 class="font-orbitron font-bold text-white text-sm">3. Protección de Datos (RGPD / LOPD-GDD)</h3>
-                    <p>Los datos recopilados a través de la autenticación de Discord u otros formularios se tratan de forma confidencial y segura. No se ceden datos a terceros salvo obligación legal. Puedes solicitar el acceso, rectificación o supresión de tus datos contactando a través de nuestros canales oficiales.</p>
+                    <div>
+                        <h3 class="font-orbitron font-bold text-white text-sm mb-1">3. Protección de Datos (RGPD)</h3>
+                        <p>Los datos recopilados mediante la autenticación de Discord u otros formularios se tratan de forma confidencial y segura. No se ceden datos a terceros salvo obligación legal. Puedes solicitar el acceso o supresión de tus datos a través de nuestros canales oficiales.</p>
+                    </div>
 
-                    <h3 class="font-orbitron font-bold text-white text-sm">4. Política de Cookies</h3>
-                    <p>Este sitio web utiliza cookies técnicas necesarias para el funcionamiento del sistema de sesiones y opcionalmente cookies de análisis estadístico. Puedes modificar tus preferencias de cookies en cualquier momento desde el pie de página de la web.</p>
+                    <div>
+                        <h3 class="font-orbitron font-bold text-white text-sm mb-1">4. Propiedad Intelectual</h3>
+                        <p>Todos los elementos de diseño, textos, código fuente e identidad visual de MODEOS EL OBI están protegidos, quedando prohibida su reproducción sin autorización previa.</p>
+                    </div>
                 </div>
+
                 <div class="pt-4 border-t border-white/10 flex justify-end">
                     <button onclick="switchTab('lobby')" class="px-5 py-2.5 bg-[#00ffcc]/20 hover:bg-[#00ffcc]/35 border border-[#00ffcc]/50 text-[#00ffcc] font-orbitron text-xs font-bold rounded-xl transition cursor-pointer">Volver al Lobby</button>
                 </div>
@@ -366,16 +369,14 @@
             <span>SYS_TIME: <strong id="footer-clock" class="text-[#00ffcc]">00:00:00</strong></span>
         </div>
         <div class="flex flex-wrap items-center justify-center gap-4 text-gray-400">
-            <button onclick="switchTab('legal')" class="hover:text-[#00ffcc] transition cursor-pointer">Términos y Condiciones</button>
+            <button onclick="switchTab('legal')" class="hover:text-[#00ffcc] transition cursor-pointer font-bold text-purple-300">Aviso Legal y Condiciones</button>
             <span>•</span>
-            <button onclick="switchTab('legal')" class="hover:text-[#00ffcc] transition cursor-pointer">Aviso Legal</button>
-            <span>•</span>
-            <button onclick="openCookieSettings()" class="hover:text-[#00ffcc] transition cursor-pointer text-purple-300">Configurar Cookies</button>
+            <button onclick="openCookieSettings()" class="hover:text-[#00ffcc] transition cursor-pointer">Configurar Cookies</button>
         </div>
         <p class="text-white font-bold pt-1">MODEOS EL OBI BETA &copy; 2026</p>
     </footer>
 
-    <!-- BANNER DE COOKIES OBLIGATORIO CON OPCIÓN DE ACEPTAR O DENEGAR -->
+    <!-- BANNER DE COOKIES OBLIGATORIO -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-[#080812]/98 backdrop-blur-2xl border-t border-[#00ffcc]/40 p-4 sm:p-5 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] hidden">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="space-y-1 text-left">
@@ -438,7 +439,7 @@
                 <h3 class="font-orbitron text-lg font-bold text-white flex items-center"><i class="fa-solid fa-shield-halved text-[#9d00ff] mr-2"></i>Zona DEV</h3>
                 <button onclick="closeDevModal()" class="text-gray-400 hover:text-white p-1 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <p class="text-xs text-gray-300">Introduce la contraseña de administrador:</p>
+            <p id="dev-attempts-text" class="text-xs text-gray-300">Introduce la contraseña de administrador (3 intentos restantes):</p>
             <input type="password" id="dev-password-input" placeholder="Contraseña" class="w-full bg-[#05050b]/90 border border-white/20 rounded-xl px-4 py-3 text-white focus:border-[#9d00ff] outline-none text-xs">
             <button onclick="verifyDevPassword()" class="w-full py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-extrabold rounded-xl transition uppercase tracking-wider text-xs cursor-pointer shadow-[0_0_15px_rgba(157,0,255,0.4)]">Desbloquear</button>
         </div>
@@ -479,6 +480,7 @@
         let isDiscordLoggedIn = false;
         let isDevUnlocked = false;
         const DEV_PASS = "srobi1998";
+        let devAttempts = 3; // Límite de intentos configurado a 3
         
         const DISCORD_CLIENT_ID = '1552244054778056745'; 
         const REDIRECT_URI = 'https://web-modeos-el-obi.onrender.com';
@@ -509,12 +511,6 @@
             }
         }
 
-        // Función auxiliar para que puedas probar el banner de inmediato desde el botón del Lobby
-        function resetCookieConsentTest() {
-            localStorage.removeItem('obi_cookie_consent');
-            checkCookieConsent();
-        }
-
         function acceptAllCookies() {
             localStorage.setItem('obi_cookie_consent', 'all');
             const banner = document.getElementById('cookie-banner');
@@ -535,14 +531,6 @@
         function closeCookieSettings() {
             const modal = document.getElementById('cookie-settings-modal');
             if(modal) modal.classList.add('hidden');
-        }
-
-        function saveCustomCookies() {
-            const analytics = document.getElementById('analytics-cookies-toggle').checked;
-            localStorage.setItem('obi_cookie_consent', JSON.stringify({ technical: true, analytics: analytics }));
-            closeCookieSettings();
-            const banner = document.getElementById('cookie-banner');
-            if(banner) banner.classList.add('hidden');
         }
 
         function startLiveDateTime() {
@@ -655,22 +643,6 @@
                 }
             });
 
-            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
-                if(btn.getAttribute('data-target') === tabId) {
-                    if(tabId === 'devzone') {
-                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-[#9d00ff] drop-shadow-[0_0_8px_rgba(157,0,255,0.8)] scale-110 transition-transform";
-                    } else {
-                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-[#00ffcc] drop-shadow-[0_0_8px_rgba(0,255,204,0.8)] scale-110 transition-transform";
-                    }
-                } else {
-                    if(btn.getAttribute('data-target') === 'devzone') {
-                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 hidden";
-                    } else {
-                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400";
-                    }
-                }
-            });
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -701,6 +673,7 @@
         }
 
         function openDevModal() { 
+            if (devAttempts <= 0) return; // Si ya se agotaron, no hace nada
             const modal = document.getElementById('dev-modal');
             if(modal) modal.classList.remove('hidden'); 
         }
@@ -712,14 +685,38 @@
 
         function verifyDevPassword() {
             const input = document.getElementById('dev-password-input');
-            if(input && input.value === DEV_PASS) {
+            const attemptsText = document.getElementById('dev-attempts-text');
+            
+            if (!input) return;
+
+            if (input.value === DEV_PASS) {
                 isDevUnlocked = true;
                 closeDevModal();
                 const mobileDevBtn = document.getElementById('mobile-dev-tab-btn');
                 if(mobileDevBtn) mobileDevBtn.classList.remove('hidden');
                 switchTab('devzone');
             } else {
-                alert('Contraseña incorrecta');
+                devAttempts--; // Resta un intento
+                input.value = '';
+                
+                if (devAttempts > 0) {
+                    if (attemptsText) {
+                        attemptsText.textContent = `Contraseña incorrecta. Te quedan ${devAttempts} intento(s):`;
+                    }
+                } else {
+                    // ¡Se agotaron los intentos! Desaparece de la web
+                    closeDevModal();
+                    
+                    // Ocultar botón superior DEV
+                    const devTriggerBtn = document.getElementById('dev-trigger-btn');
+                    if (devTriggerBtn) devTriggerBtn.style.display = 'none';
+
+                    // Ocultar botón móvil DEV
+                    const mobileDevBtn = document.getElementById('mobile-dev-tab-btn');
+                    if (mobileDevBtn) mobileDevBtn.style.display = 'none';
+
+                    alert('Acceso bloqueado permanentemente por seguridad. La opción DEV ha desaparecido de la web.');
+                }
             }
         }
 
