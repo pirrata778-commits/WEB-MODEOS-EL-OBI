@@ -5,6 +5,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MODEOS EL OBI | Cyberpunk Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030308;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .glass-panel {
+            background: rgba(10, 10, 22, 0.90);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glow-text {
+            text-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
+        }
+        .cyber-grid {
+            background-image: linear-gradient(to right, rgba(0,255,204,0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(157,0,255,0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col cyber-grid relative selection:bg-[#00ffcc] selection:text-black">
+
+    <!-- AVISO DE WEB EN BETA -->
+    <div id="beta-banner" class="w-full bg-gradient-to-r from-[#9d00ff]/30 via-[#5865F2]/30 to-[#00ffcc]/30 border-b border-[#00ffcc]/30 px-3 py-2 text-center text-[10px] sm:text-xs font-orbitron font-bold text-white flex items-center justify-between z-50 backdrop-blur-md">
+        <div class="flex items-center justify-center space-x-1.5 flex-grow truncate px-1">
+            <i class="fa-solid fa-triangle-exclamation text-yellow-400 animate-pulse shrink-0"></i>
+            <span class="truncate">Plataforma en fase <span class="text-[#00ffcc]">BETA</span>. Funciones en desarrollo.</span>
+        </div>
+        <button onclick="closeBetaBanner()" class="text-gray-400 hover:text-white px-2 py-0.5 text-sm shrink-0"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Navegación Superior -->
+    <nav class="w-full bg-[#05050b]/95 backdrop-blur-2xl border-b border-[#00ffcc]/20 px-3 sm:px-6 py-3 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-40">
+        <div class="flex items-center space-x-2 cursor-pointer group" onclick="switchTab('lobby')">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#9d00ff] to-[#00ffcc] p-0.5 shadow-[0_0_20px_rgba(0,255,204,0.4)] flex items-center justify-center shrink-0">
+                <div class="w-full h-full bg-[#05050b] rounded-[10px] flex items-center justify-center">
+                    <i class="fa-solid fa-cube text-[#00ffcc] text-xs sm:text-sm"></i>
+                </div>
+            </div>
+            <div>
+                <span class="font-orbitron font-black text-white text-xs sm:text-base tracking-wider block leading-tight">MODEOS <span class="text-[#00ffcc] glow-text">EL OBI</span></span>
+                <span class="text-[8px] sm:text-[9px] text-purple-400 font-orbitron font-bold uppercase tracking-widest block leading-tight">OS v2.6 BETA</span>
+            </div>
+        </div>
+
+        <!-- Pestañas Desktop -->
+        <div class="hidden md:flex items-center space-x-2 bg-[#0a0a16]/90 border border-white/10 rounded-full p-1.5 shadow-inner backdrop-blur-xl">
+            <button onclick="switchTab('lobby')" class="nav-btn px-5 py-2.5 rounded-full text-xs font-orbitron font-bold text-purple-300 bg-[#9d00ff]/15 border border-[#9d00ff]/40 transition-all flex items-center space-x-2" data-target="lobby">
+                <i class="fa-solid fa-network-wired text-sm"></i><span>Lobby</span>
+            </button>
+            <button onclick="switchTab('modelos')" class="nav-btn px-5 py-2.5 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="modelos">
+                <i class="fa-solid fa-code text-sm"></i><span>Modelos</span>
+            </button>
+            <button onclick="switchTab('directos')" class="nav-btn px-5 py-2.5 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="directos">
+                <i class="fa-solid fa-tower-broadcast text-sm"></i><span>Directos</span>
+            </button>
+            <button onclick="switchTab('dashboard')" class="nav-btn px-5 py-2.5 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="dashboard">
+                <i class="fa-solid fa-robot text-sm"></i><span>Dashboard Bot</span>
+            </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <button onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1">
+                <i class="fa-solid fa-shield-halved text-xs"></i><span class="font-orbitron text-[10px] sm:text-xs">DEV</span>
+            </button>
+            <button onclick="loginDiscord()" id="discord-login-btn" class="px-2.5 sm:px-3 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1">
+                <i class="fa-brands fa-discord text-xs"></i><span class="font-orbitron text-[10px] sm:text-xs">Login</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Navegación Móvil Inferior -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#05050b]/98 backdrop-blur-2xl border-t border-[#00ffcc]/20 px-1 py-2 flex justify-around items-center">
+        <button onclick="switchTab('lobby')" class="mobile-nav-btn flex flex-col items-center text-[#00ffcc] p-1" data-target="lobby">
+            <i class="fa-solid fa-network-wired text-sm mb-0.5"></i>
+            <span class="text-[8px] font-bold font-orbitron">Lobby</span>
+        </button>
+        <button onclick="switchTab('modelos')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="modelos">
+            <i class="fa-solid fa-code text-sm mb-0.5"></i>
+            <span class="text-[8px] font-bold font-orbitron">Modelos</span>
+        </button>
+        <button onclick="switchTab('directos')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="directos">
+            <i class="fa-solid fa-tower-broadcast text-sm mb-0.5"></i>
+            <span class="text-[8px] font-bold font-orbitron">Directos</span>
+        </button>
+        <button onclick="switchTab('dashboard')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="dashboard">
+            <i class="fa-solid fa-robot text-sm mb-0.5"></i>
+            <span class="text-[8px] font-bold font-orbitron">Bots</span>
+        </button>
+        <button onclick="switchTab('devzone')" id="mobile-dev-tab-btn" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1 hidden" data-target="devzone">
+            <i class="fa-solid fa-terminal text-sm mb-0.5 text-[#9d00ff]"></i>
+            <span class="text-[8px] font-bold font-orbitron text-[#9d00ff]">DEV</span>
+        </button>
+    </div>
+
+    <!-- Contenido Principal Único -->
+    <main class="flex-grow container mx-auto px-3 sm:px-6 py-6 max-w-7xl pb-28 sm:pb-20 space-y-6">
+        
+        <!-- LOBBY -->
+        <section id="tab-lobby" class="tab-content space-y-6">
+            <div class="glass-panel p-5 sm:p-12 rounded-3xl relative overflow-hidden space-y-5 border-[#00ffcc]/30">
+                <h1 class="font-orbitron text-2xl sm:text-6xl font-black text-white glow-text">MODEOS <span class="text-[#00ffcc]">EL OBI</span></h1>
+                <p class="text-gray-300 text-xs sm:text-lg max-w-2xl">El universo definitivo de bots, herramientas y tecnología forjado desde cero.</p>
+                <button onclick="switchTab('modelos')" class="px-6 py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-bold text-xs rounded-2xl">Explorar Modelos</button>
+            </div>
+        </section>
+
+        <!-- MODELOS -->
+        <section id="tab-modelos" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-4 border-[#00ffcc]/40">
+                <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white glow-text">Modelos y Orígenes</h2>
+                <p class="text-gray-300 text-xs sm:text-sm">Proyecto creado con código puro y pasión por la automatización.</p>
+            </div>
+        </section>
+
+        <!-- DIRECTOS -->
+        <section id="tab-directos" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-4 border-[#ff007f]/40">
+                <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Centro de Streams</h2>
+            </div>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section id="tab-dashboard" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-5 sm:p-8 rounded-3xl">
+                <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Dashboard Multi-Bot</h2>
+            </div>
+        </section>
+
+        <!-- ZONA DEV -->
+        <section id="tab-devzone" class="tab-content hidden space-y-6">
+            <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-6 border-[#9d00ff]/60">
+                <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Zona DEV - Panel de Control</h2>
+                <button onclick="lockDevZone()" class="px-3 py-2 bg-red-500/20 text-red-400 text-xs font-bold rounded-xl">Bloquear Zona DEV</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-[#00ffcc]/20 bg-[#05050b]/90 py-6 px-4 text-center text-[10px] sm:text-xs font-orbitron space-y-2 z-30">
+        <p class="text-white font-bold">MODEOS EL OBI BETA &copy; 2026</p>
+    </footer>
+
+    <!-- MODAL DEV -->
+    <div id="dev-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 rounded-3xl w-full max-w-sm space-y-4">
+            <h3 class="font-orbitron text-lg font-bold text-white">Zona DEV</h3>
+            <input type="password" id="dev-password-input" placeholder="Contraseña" class="w-full bg-[#05050b] border border-white/20 rounded-xl px-4 py-3 text-white text-xs outline-none">
+            <button onclick="verifyDevPassword()" class="w-full py-3 bg-[#9d00ff] text-white font-orbitron font-bold rounded-xl text-xs">Desbloquear</button>
+            <button onclick="closeDevModal()" class="w-full py-2 text-gray-400 text-xs">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        let isDiscordLoggedIn = false;
+        let isDevUnlocked = false;
+        const DEV_PASS = "srobi1998";
+
+        function closeBetaBanner() {
+            document.getElementById('beta-banner').style.display = 'none';
+        }
+
+        function switchTab(tabId) {
+            if (tabId === 'devzone' && !isDevUnlocked) {
+                openDevModal();
+                return;
+            }
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if(target) target.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openDevModal() { document.getElementById('dev-modal').classList.remove('hidden'); }
+        function closeDevModal() { document.getElementById('dev-modal').classList.add('hidden'); }
+
+        function verifyDevPassword() {
+            if(document.getElementById('dev-password-input').value === DEV_PASS) {
+                isDevUnlocked = true;
+                closeDevModal();
+                document.getElementById('mobile-dev-tab-btn').classList.remove('hidden');
+                switchTab('devzone');
+            } else {
+                alert('Contraseña incorrecta');
+            }
+        }
+
+        function lockDevZone() {
+            isDevUnlocked = false;
+            document.getElementById('mobile-dev-tab-btn').classList.add('hidden');
+            switchTab('lobby');
+        }
+
+        function loginDiscord() {
+            alert('Simulación de login con Discord correcta.');
+            isDiscordLoggedIn = true;
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MODEOS EL OBI | Cyberpunk Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Rajdhani:wght@500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
