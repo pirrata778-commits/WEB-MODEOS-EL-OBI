@@ -133,6 +133,39 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Explicación del Proyecto -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="glass-panel p-5 rounded-3xl space-y-3 border-purple-500/30">
+                    <div class="w-10 h-10 rounded-2xl bg-[#9d00ff]/20 border border-[#9d00ff]/50 flex items-center justify-center text-[#00ffcc]">
+                        <i class="fa-solid fa-microchip text-base"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Tecnología Propia</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Desarrollo independiente de scripts, automatizaciones y sistemas diseñados desde cero para ofrecer el máximo rendimiento.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl space-y-3 border-[#00ffcc]/30">
+                    <div class="w-10 h-10 rounded-2xl bg-[#00ffcc]/20 border border-[#00ffcc]/50 flex items-center justify-center text-[#00ffcc]">
+                        <i class="fa-brands fa-discord text-base"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Ecosistema Discord</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Bots avanzados y herramientas de gestión integradas con autenticación directa y paneles de control interactivos.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl space-y-3 border-indigo-500/30">
+                    <div class="w-10 h-10 rounded-2xl bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#5865F2] flex items-center justify-center">
+                        <i class="fa-solid fa-terminal text-base"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Evolución Constante</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Una plataforma en fase BETA en constante crecimiento, adaptando nuevas funciones y mejoras de ciberseguridad.
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- MODELOS -->
@@ -152,12 +185,62 @@
 
         <!-- DIRECTOS -->
         <section id="tab-directos" class="tab-content hidden space-y-6">
-            <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-4 border-[#ff007f]/40">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] text-[10px] sm:text-xs font-orbitron font-bold uppercase rounded-full">
-                    <i class="fa-solid fa-tower-broadcast animate-ping"></i><span>Transmisión en Vivo</span>
+            <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-6 border-[#ff007f]/40">
+                
+                <!-- Cabecera de la sección -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-4">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] text-[10px] sm:text-xs font-orbitron font-bold uppercase rounded-full mb-2">
+                            <i class="fa-solid fa-tower-broadcast animate-ping"></i><span>Transmisión en Vivo</span>
+                        </div>
+                        <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Centro de Streams</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 px-3 py-1.5 bg-black/60 border border-white/10 rounded-xl text-xs font-orbitron">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                        <span class="text-gray-300">Estado: <strong class="text-white">Fuera de línea</strong></span>
+                    </div>
                 </div>
-                <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Centro de Streams</h2>
-                <p class="text-gray-400 text-xs sm:text-sm">Directos de desarrollo de bots, programación en vivo y ciberseguridad avanzada.</p>
+
+                <!-- Reproductor simulado -->
+                <div class="relative w-full aspect-video bg-black/80 rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center p-6 text-center space-y-3 group">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,127,0.1)_0,transparent_70%)]"></div>
+                    <div class="w-16 h-16 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/40 flex items-center justify-center text-[#ff007f] text-2xl shadow-[0_0_20px_rgba(255,0,127,0.3)]">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-base sm:text-lg">Próximas Emisiones en Directo</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm max-w-md">
+                        Sigue los directos de desarrollo y programación en mis canales oficiales.
+                    </p>
+                    
+                    <!-- Botones con los logos oficiales sin copyright -->
+                    <div class="flex flex-wrap justify-center gap-3 pt-2">
+                        <a href="https://twitch.tv" target="_blank" class="px-5 py-2.5 bg-[#9146FF] hover:bg-[#772ce8] text-white font-orbitron text-xs font-bold rounded-xl transition flex items-center space-x-2 shadow-[0_0_15px_rgba(145,70,255,0.3)]">
+                            <i class="fa-brands fa-twitch text-sm"></i><span>Twitch</span>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="px-5 py-2.5 bg-[#FF0000] hover:bg-[#cc0000] text-white font-orbitron text-xs font-bold rounded-xl transition flex items-center space-x-2 shadow-[0_0_15px_rgba(255,0,0,0.3)]">
+                            <i class="fa-brands fa-youtube text-sm"></i><span>YouTube</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Próximos Temas / Agenda -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-black/40 border border-white/10 p-4 rounded-2xl space-y-2">
+                        <span class="text-[10px] font-orbitron text-purple-400 uppercase font-bold flex items-center gap-1.5">
+                            <i class="fa-brands fa-twitch text-sm text-[#9146FF]"></i> Próximo Stream en Twitch
+                        </span>
+                        <h4 class="font-orbitron font-bold text-white text-sm">Optimización de comandos en Discord.js</h4>
+                        <p class="text-gray-400 text-xs">Aprende a limpiar tu código y mejorar la velocidad de respuesta de tus bots.</p>
+                    </div>
+                    <div class="bg-black/40 border border-white/10 p-4 rounded-2xl space-y-2">
+                        <span class="text-[10px] font-orbitron text-[#00ffcc] uppercase font-bold flex items-center gap-1.5">
+                            <i class="fa-brands fa-youtube text-sm text-[#FF0000]"></i> Nuevo Video en YouTube
+                        </span>
+                        <h4 class="font-orbitron font-bold text-white text-sm">Tutoriales y Q&A con la Comunidad</h4>
+                        <p class="text-gray-400 text-xs">Resolución de dudas de código y revisión de proyectos de los seguidores.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -221,7 +304,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT COMPLETO -->
+    <!-- SCRIPT -->
     <script>
         let isDiscordLoggedIn = false;
         let isDevUnlocked = false;
