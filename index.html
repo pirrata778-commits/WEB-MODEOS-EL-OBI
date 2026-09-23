@@ -201,6 +201,13 @@
                 </div>
             </div>
 
+            <!-- Botón de prueba para forzar el banner de cookies -->
+            <div class="text-center pt-2">
+                <button onclick="resetCookieConsentTest()" class="px-4 py-2 bg-purple-900/40 hover:bg-purple-900/70 border border-purple-500/50 text-purple-300 text-xs font-orbitron rounded-xl transition cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
+                    <i class="fa-solid fa-cookie mr-1.5"></i>Forzar / Mostrar Banner de Cookies de Prueba
+                </button>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-indigo-500/30">
                     <div class="w-10 h-10 rounded-2xl bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#5865F2] flex items-center justify-center shadow-[0_0_10px_rgba(88,101,242,0.2)]">
@@ -494,10 +501,18 @@
 
         function checkCookieConsent() {
             const consent = localStorage.getItem('obi_cookie_consent');
+            const banner = document.getElementById('cookie-banner');
             if (!consent) {
-                const banner = document.getElementById('cookie-banner');
                 if(banner) banner.classList.remove('hidden');
+            } else {
+                if(banner) banner.classList.add('hidden');
             }
+        }
+
+        // Función auxiliar para que puedas probar el banner de inmediato desde el botón del Lobby
+        function resetCookieConsentTest() {
+            localStorage.removeItem('obi_cookie_consent');
+            checkCookieConsent();
         }
 
         function acceptAllCookies() {
