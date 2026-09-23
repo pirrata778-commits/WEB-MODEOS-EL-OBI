@@ -18,7 +18,6 @@
         }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
         
-        /* Efectos de Vidrio y Neón mejorados */
         .glass-panel {
             background: rgba(10, 10, 22, 0.85);
             backdrop-filter: blur(25px);
@@ -41,7 +40,6 @@
             background-size: 30px 30px;
         }
 
-        /* NUEVO: Animación de pulso para la luz de la barra de navegación */
         @keyframes neonPulse {
             0% { box-shadow: 0 0 5px rgba(157,0,255,0.4), inset 0 0 5px rgba(157,0,255,0.2); }
             50% { box-shadow: 0 0 20px rgba(0,255,204,0.7), inset 0 0 10px rgba(0,255,204,0.4); }
@@ -55,7 +53,6 @@
             color: #ffffff !important;
         }
 
-        /* NUEVO: Efecto de transición de aparición con parpadeo cibernético */
         @keyframes cyberFadeIn {
             0% { opacity: 0; transform: translateY(8px) scale(0.99); filter: brightness(1.5); }
             100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
@@ -146,6 +143,27 @@
         
         <!-- LOBBY -->
         <section id="tab-lobby" class="tab-content space-y-6 hidden">
+            
+            <!-- WIDGET DE FECHA Y HORA EN TIEMPO REAL -->
+            <div class="glass-panel px-4 py-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 border-[#00ffcc]/30 shadow-[0_0_20px_rgba(0,255,204,0.1)]">
+                <div class="flex items-center space-x-2 text-xs font-orbitron text-gray-300">
+                    <span class="w-2 h-2 rounded-full bg-[#00ffcc] animate-ping"></span>
+                    <span>SISTEMA EN LÍNEA</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <!-- Fecha corta -->
+                    <div class="flex items-center space-x-1.5 px-3 py-1 bg-black/50 border border-white/10 rounded-xl font-orbitron text-xs text-purple-300">
+                        <i class="fa-regular fa-calendar text-xs"></i>
+                        <span id="live-date" class="font-bold tracking-wider">00/00/0000</span>
+                    </div>
+                    <!-- Reloj -->
+                    <div class="flex items-center space-x-1.5 px-3 py-1 bg-black/50 border border-white/10 rounded-xl font-orbitron text-xs text-[#00ffcc]">
+                        <i class="fa-regular fa-clock text-xs"></i>
+                        <span id="live-clock" class="font-bold tracking-wider">00:00:00</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="glass-panel p-5 sm:p-12 rounded-3xl relative overflow-hidden space-y-5 border-[#00ffcc]/30 shadow-[0_0_40px_rgba(0,255,204,0.15)]">
                 <div class="absolute -right-20 -top-20 w-60 h-60 bg-[#9d00ff]/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
                 <div class="inline-flex items-center space-x-2 px-3 py-1 bg-[#9d00ff]/20 border border-[#9d00ff]/50 text-purple-300 text-[10px] sm:text-xs font-orbitron font-bold tracking-widest uppercase rounded-full">
@@ -306,9 +324,14 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-[#00ffcc]/20 bg-[#05050b]/90 py-6 px-4 text-center text-[10px] sm:text-xs font-orbitron space-y-3 z-30">
-        <p class="text-white font-bold">MODEOS EL OBI BETA &copy; 2026</p>
+    <!-- Footer con Fecha y Reloj integrados -->
+    <footer class="mt-auto border-t border-[#00ffcc]/20 bg-[#05050b]/90 py-6 px-4 text-center text-[10px] sm:text-xs font-orbitron space-y-2 z-30">
+        <div class="flex flex-wrap items-center justify-center gap-3 text-gray-400">
+            <span>SYS_DATE: <strong id="footer-date" class="text-purple-300">00/00/0000</strong></span>
+            <span>•</span>
+            <span>SYS_TIME: <strong id="footer-clock" class="text-[#00ffcc]">00:00:00</strong></span>
+        </div>
+        <p class="text-white font-bold pt-1">MODEOS EL OBI BETA &copy; 2026</p>
     </footer>
 
     <!-- MODAL DEV -->
@@ -324,7 +347,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT CON EFECTOS VISUALES MEJORADOS -->
+    <!-- SCRIPT -->
     <script>
         let isDiscordLoggedIn = false;
         let isDevUnlocked = false;
@@ -342,10 +365,43 @@
                 switchTab('lobby');
                 renderBotsGrid();
                 handleDiscordAuthRedirect();
+                startLiveDateTime(); // Iniciar reloj y fecha en tiempo real
             } catch (err) {
                 console.error("Error al inicializar la app:", err);
             }
         });
+
+        // NUEVO: Función para actualizar la fecha corta y hora en tiempo real
+        function startLiveDateTime() {
+            const updateDateTime = () => {
+                const now = new Date();
+                
+                // Formato de fecha corta (DD/MM/YYYY)
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const year = now.getFullYear();
+                const dateString = `${day}/${month}/${year}`;
+
+                // Formato de hora (HH:MM:SS)
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const timeString = `${hours}:${minutes}:${seconds}`;
+                
+                // Actualizar elementos en Lobby y Footer
+                const dateEl = document.getElementById('live-date');
+                const footerDateEl = document.getElementById('footer-date');
+                const clockEl = document.getElementById('live-clock');
+                const footerClockEl = document.getElementById('footer-clock');
+                
+                if (dateEl) dateEl.textContent = dateString;
+                if (footerDateEl) footerDateEl.textContent = dateString;
+                if (clockEl) clockEl.textContent = timeString;
+                if (footerClockEl) footerClockEl.textContent = timeString;
+            };
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        }
 
         function closeBetaBanner() {
             const banner = document.getElementById('beta-banner');
@@ -409,21 +465,18 @@
                 return;
             }
             
-            // Ocultar y limpiar animaciones de todas las secciones
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.add('hidden');
                 el.classList.remove('tab-animate');
             });
             
-            // Mostrar la sección seleccionada con efecto de aparición fluida
             const target = document.getElementById('tab-' + tabId);
             if(target) {
                 target.classList.remove('hidden');
-                void target.offsetWidth; // Forzar reflow para reiniciar la animación CSS
+                void target.offsetWidth; 
                 target.classList.add('tab-animate');
             }
             
-            // Actualizar la luz activa en escritorio con efecto parpadeante/neón (active-nav-glow)
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 if(btn.getAttribute('data-target') === tabId) {
                     btn.className = "nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer active-nav-glow";
@@ -432,7 +485,6 @@
                 }
             });
 
-            // Actualizar la luz activa en móvil con brillo de neón
             document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
                 if(btn.getAttribute('data-target') === tabId) {
                     if(tabId === 'devzone') {
