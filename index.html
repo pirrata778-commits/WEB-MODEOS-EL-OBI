@@ -17,19 +17,52 @@
             padding: 0;
         }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        
+        /* Efectos de Vidrio y Neón mejorados */
         .glass-panel {
-            background: rgba(10, 10, 22, 0.90);
+            background: rgba(10, 10, 22, 0.85);
             backdrop-filter: blur(25px);
             border: 1px solid rgba(0, 255, 204, 0.15);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
         }
+        .glass-panel:hover {
+            border-color: rgba(0, 255, 204, 0.35);
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.15);
+        }
+
         .glow-text {
             text-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
         }
+
         .cyber-grid {
             background-image: linear-gradient(to right, rgba(0,255,204,0.04) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(157,0,255,0.04) 1px, transparent 1px);
             background-size: 30px 30px;
+        }
+
+        /* NUEVO: Animación de pulso para la luz de la barra de navegación */
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 5px rgba(157,0,255,0.4), inset 0 0 5px rgba(157,0,255,0.2); }
+            50% { box-shadow: 0 0 20px rgba(0,255,204,0.7), inset 0 0 10px rgba(0,255,204,0.4); }
+            100% { box-shadow: 0 0 5px rgba(157,0,255,0.4), inset 0 0 5px rgba(157,0,255,0.2); }
+        }
+
+        .active-nav-glow {
+            animation: neonPulse 3s infinite ease-in-out;
+            background: linear-gradient(135deg, rgba(157,0,255,0.25), rgba(0,255,204,0.25)) !important;
+            border-color: #00ffcc !important;
+            color: #ffffff !important;
+        }
+
+        /* NUEVO: Efecto de transición de aparición con parpadeo cibernético */
+        @keyframes cyberFadeIn {
+            0% { opacity: 0; transform: translateY(8px) scale(0.99); filter: brightness(1.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
+        }
+
+        .tab-animate {
+            animation: cyberFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
@@ -41,15 +74,15 @@
             <i class="fa-solid fa-triangle-exclamation text-yellow-400 animate-pulse shrink-0"></i>
             <span class="truncate">Plataforma en fase <span class="text-[#00ffcc]">BETA</span>. Funciones en desarrollo.</span>
         </div>
-        <button onclick="closeBetaBanner()" class="text-gray-400 hover:text-white px-2 py-0.5 text-sm shrink-0"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="closeBetaBanner()" class="text-gray-400 hover:text-white px-2 py-0.5 text-sm shrink-0 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <!-- Navegación Superior -->
     <nav class="w-full bg-[#05050b]/95 backdrop-blur-2xl border-b border-[#00ffcc]/20 px-3 sm:px-6 py-3 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-40">
         <div class="flex items-center space-x-2 cursor-pointer group" onclick="switchTab('lobby')">
-            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#9d00ff] to-[#00ffcc] p-0.5 shadow-[0_0_20px_rgba(0,255,204,0.4)] flex items-center justify-center shrink-0">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#9d00ff] to-[#00ffcc] p-0.5 shadow-[0_0_20px_rgba(0,255,204,0.4)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <div class="w-full h-full bg-[#05050b] rounded-[10px] flex items-center justify-center">
-                    <i class="fa-solid fa-cube text-[#00ffcc] text-xs sm:text-sm"></i>
+                    <i class="fa-solid fa-cube text-[#00ffcc] text-xs sm:text-sm animate-pulse"></i>
                 </div>
             </div>
             <div>
@@ -60,25 +93,25 @@
 
         <!-- Pestañas Desktop -->
         <div class="hidden md:flex items-center space-x-2 bg-[#0a0a16]/90 border border-white/10 rounded-full p-1.5 shadow-inner backdrop-blur-xl">
-            <button onclick="switchTab('lobby')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold text-purple-300 bg-[#9d00ff]/15 border border-[#9d00ff]/40 transition-all flex items-center space-x-2" data-target="lobby">
+            <button onclick="switchTab('lobby')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="lobby">
                 <i class="fa-solid fa-network-wired text-sm"></i><span>Lobby</span>
             </button>
-            <button onclick="switchTab('modelos')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="modelos">
+            <button onclick="switchTab('modelos')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="modelos">
                 <i class="fa-solid fa-code text-sm"></i><span>Modelos</span>
             </button>
-            <button onclick="switchTab('directos')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="directos">
+            <button onclick="switchTab('directos')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="directos">
                 <i class="fa-solid fa-tower-broadcast text-sm"></i><span>Directos</span>
             </button>
-            <button onclick="switchTab('dashboard')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold text-gray-400 hover:text-white transition-all flex items-center space-x-2 border border-transparent" data-target="dashboard">
+            <button onclick="switchTab('dashboard')" class="nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="dashboard">
                 <i class="fa-solid fa-robot text-sm"></i><span>Dashboard Bot</span>
             </button>
         </div>
 
         <div class="flex items-center space-x-2">
-            <button onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1">
+            <button onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
                 <i class="fa-solid fa-shield-halved text-xs"></i><span class="font-orbitron text-[10px] sm:text-xs">DEV</span>
             </button>
-            <button onclick="loginDiscord()" id="discord-login-btn" class="px-2.5 sm:px-3 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1">
+            <button onclick="loginDiscord()" id="discord-login-btn" class="px-2.5 sm:px-3 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(88,101,242,0.3)]">
                 <i class="fa-brands fa-discord text-xs"></i><span class="font-orbitron text-[10px] sm:text-xs">Login</span>
             </button>
         </div>
@@ -86,23 +119,23 @@
 
     <!-- Navegación Móvil Inferior -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#05050b]/98 backdrop-blur-2xl border-t border-[#00ffcc]/20 px-1 py-2 flex justify-around items-center">
-        <button onclick="switchTab('lobby')" class="mobile-nav-btn flex flex-col items-center text-[#00ffcc] p-1" data-target="lobby">
+        <button onclick="switchTab('lobby')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="lobby">
             <i class="fa-solid fa-network-wired text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Lobby</span>
         </button>
-        <button onclick="switchTab('modelos')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="modelos">
+        <button onclick="switchTab('modelos')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="modelos">
             <i class="fa-solid fa-code text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Modelos</span>
         </button>
-        <button onclick="switchTab('directos')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="directos">
+        <button onclick="switchTab('directos')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="directos">
             <i class="fa-solid fa-tower-broadcast text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Directos</span>
         </button>
-        <button onclick="switchTab('dashboard')" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1" data-target="dashboard">
+        <button onclick="switchTab('dashboard')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="dashboard">
             <i class="fa-solid fa-robot text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Bots</span>
         </button>
-        <button onclick="switchTab('devzone')" id="mobile-dev-tab-btn" class="mobile-nav-btn flex flex-col items-center text-gray-400 p-1 hidden" data-target="devzone">
+        <button onclick="switchTab('devzone')" id="mobile-dev-tab-btn" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors hidden" data-target="devzone">
             <i class="fa-solid fa-terminal text-sm mb-0.5 text-[#9d00ff]"></i>
             <span class="text-[8px] font-bold font-orbitron text-[#9d00ff]">DEV</span>
         </button>
@@ -112,9 +145,9 @@
     <main class="flex-grow container mx-auto px-3 sm:px-6 py-6 max-w-7xl pb-28 sm:pb-20 space-y-6">
         
         <!-- LOBBY -->
-        <section id="tab-lobby" class="tab-content space-y-6">
+        <section id="tab-lobby" class="tab-content space-y-6 hidden">
             <div class="glass-panel p-5 sm:p-12 rounded-3xl relative overflow-hidden space-y-5 border-[#00ffcc]/30 shadow-[0_0_40px_rgba(0,255,204,0.15)]">
-                <div class="absolute -right-20 -top-20 w-60 h-60 bg-[#9d00ff]/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -right-20 -top-20 w-60 h-60 bg-[#9d00ff]/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
                 <div class="inline-flex items-center space-x-2 px-3 py-1 bg-[#9d00ff]/20 border border-[#9d00ff]/50 text-purple-300 text-[10px] sm:text-xs font-orbitron font-bold tracking-widest uppercase rounded-full">
                     <i class="fa-solid fa-circle-nodes text-[#00ffcc]"></i><span>Plataforma Principal Activa (BETA)</span>
                 </div>
@@ -125,19 +158,19 @@
                     Desarrollo de bots a medida, creación y renovación integral de servidores de Discord, junto con soporte técnico profesional.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button onclick="switchTab('modelos')" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-bold text-xs rounded-2xl transition shadow-[0_0_20px_rgba(157,0,255,0.4)] flex items-center justify-center space-x-2">
+                    <button onclick="switchTab('modelos')" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-bold text-xs rounded-2xl transition hover:scale-105 shadow-[0_0_20px_rgba(157,0,255,0.4)] flex items-center justify-center space-x-2 cursor-pointer">
                         <span>Ver Servicios y Modelos</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    <button onclick="switchTab('dashboard')" class="w-full sm:w-auto px-6 py-3.5 bg-black/80 border border-[#00ffcc]/50 text-[#00ffcc] font-orbitron font-bold text-xs rounded-2xl transition shadow-[0_0_15px_rgba(0,255,204,0.2)] flex items-center justify-center space-x-2">
+                    <button onclick="switchTab('dashboard')" class="w-full sm:w-auto px-6 py-3.5 bg-black/80 border border-[#00ffcc]/50 text-[#00ffcc] font-orbitron font-bold text-xs rounded-2xl transition hover:scale-105 shadow-[0_0_15px_rgba(0,255,204,0.2)] flex items-center justify-center space-x-2 cursor-pointer">
                         <span>Gestionar Bots</span><i class="fa-solid fa-robot"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Ecosistema Completo de Servicios (Bots + Servidores + Soporte) -->
+            <!-- Ecosistema Completo de Servicios -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-indigo-500/30">
-                    <div class="w-10 h-10 rounded-2xl bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#5865F2] flex items-center justify-center">
+                    <div class="w-10 h-10 rounded-2xl bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#5865F2] flex items-center justify-center shadow-[0_0_10px_rgba(88,101,242,0.2)]">
                         <i class="fa-solid fa-robot text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Bots a Medida</h3>
@@ -147,7 +180,7 @@
                 </div>
 
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-purple-500/30">
-                    <div class="w-10 h-10 rounded-2xl bg-[#9d00ff]/20 border border-[#9d00ff]/50 flex items-center justify-center text-[#00ffcc]">
+                    <div class="w-10 h-10 rounded-2xl bg-[#9d00ff]/20 border border-[#9d00ff]/50 flex items-center justify-center text-[#00ffcc] shadow-[0_0_10px_rgba(157,0,255,0.2)]">
                         <i class="fa-solid fa-server text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Servidores desde Cero</h3>
@@ -157,7 +190,7 @@
                 </div>
 
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-[#00ffcc]/30">
-                    <div class="w-10 h-10 rounded-2xl bg-[#00ffcc]/20 border border-[#00ffcc]/50 flex items-center justify-center text-[#00ffcc]">
+                    <div class="w-10 h-10 rounded-2xl bg-[#00ffcc]/20 border border-[#00ffcc]/50 flex items-center justify-center text-[#00ffcc] shadow-[0_0_10px_rgba(0,255,204,0.2)]">
                         <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Renovación Total</h3>
@@ -167,7 +200,7 @@
                 </div>
 
                 <div class="glass-panel p-5 rounded-3xl space-y-3 border-pink-500/30">
-                    <div class="w-10 h-10 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] flex items-center justify-center">
+                    <div class="w-10 h-10 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] flex items-center justify-center shadow-[0_0_10px_rgba(255,0,127,0.2)]">
                         <i class="fa-solid fa-headset text-base"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-sm">Soporte Técnico</h3>
@@ -196,8 +229,6 @@
         <!-- DIRECTOS -->
         <section id="tab-directos" class="tab-content hidden space-y-6">
             <div class="glass-panel p-5 sm:p-10 rounded-3xl space-y-6 border-[#ff007f]/40">
-                
-                <!-- Cabecera de la sección -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-4">
                     <div>
                         <div class="inline-flex items-center space-x-2 px-3 py-1 bg-[#ff007f]/20 border border-[#ff007f]/50 text-[#ff007f] text-[10px] sm:text-xs font-orbitron font-bold uppercase rounded-full mb-2">
@@ -211,10 +242,9 @@
                     </div>
                 </div>
 
-                <!-- Reproductor simulado -->
                 <div class="relative w-full aspect-video bg-black/80 rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center p-6 text-center space-y-3 group">
                     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,127,0.1)_0,transparent_70%)]"></div>
-                    <div class="w-16 h-16 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/40 flex items-center justify-center text-[#ff007f] text-2xl shadow-[0_0_20px_rgba(255,0,127,0.3)]">
+                    <div class="w-16 h-16 rounded-2xl bg-[#ff007f]/20 border border-[#ff007f]/40 flex items-center justify-center text-[#ff007f] text-2xl shadow-[0_0_20px_rgba(255,0,127,0.3)] group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-play"></i>
                     </div>
                     <h3 class="font-orbitron font-bold text-white text-base sm:text-lg">Próximas Emisiones en Directo</h3>
@@ -222,35 +252,15 @@
                         Sigue los directos de programación de bots y configuración de servidores en mis canales oficiales.
                     </p>
                     
-                    <!-- Botones con los logos oficiales sin copyright -->
                     <div class="flex flex-wrap justify-center gap-3 pt-2">
-                        <a href="https://twitch.tv" target="_blank" class="px-5 py-2.5 bg-[#9146FF] hover:bg-[#772ce8] text-white font-orbitron text-xs font-bold rounded-xl transition flex items-center space-x-2 shadow-[0_0_15px_rgba(145,70,255,0.3)]">
+                        <a href="https://twitch.tv" target="_blank" class="px-5 py-2.5 bg-[#9146FF] hover:bg-[#772ce8] text-white font-orbitron text-xs font-bold rounded-xl transition hover:scale-105 flex items-center space-x-2 shadow-[0_0_15px_rgba(145,70,255,0.3)] cursor-pointer">
                             <i class="fa-brands fa-twitch text-sm"></i><span>Twitch</span>
                         </a>
-                        <a href="https://youtube.com" target="_blank" class="px-5 py-2.5 bg-[#FF0000] hover:bg-[#cc0000] text-white font-orbitron text-xs font-bold rounded-xl transition flex items-center space-x-2 shadow-[0_0_15px_rgba(255,0,0,0.3)]">
+                        <a href="https://youtube.com" target="_blank" class="px-5 py-2.5 bg-[#FF0000] hover:bg-[#cc0000] text-white font-orbitron text-xs font-bold rounded-xl transition hover:scale-105 flex items-center space-x-2 shadow-[0_0_15px_rgba(255,0,0,0.3)] cursor-pointer">
                             <i class="fa-brands fa-youtube text-sm"></i><span>YouTube</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Próximos Temas / Agenda -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div class="bg-black/40 border border-white/10 p-4 rounded-2xl space-y-2">
-                        <span class="text-[10px] font-orbitron text-purple-400 uppercase font-bold flex items-center gap-1.5">
-                            <i class="fa-brands fa-twitch text-sm text-[#9146FF]"></i> Próximo Stream en Twitch
-                        </span>
-                        <h4 class="font-orbitron font-bold text-white text-sm">Programación de Bots y Estructura de Servidores</h4>
-                        <p class="text-gray-400 text-xs">Creación de comandos desde cero y diseño de canales profesionales en directo.</p>
-                    </div>
-                    <div class="bg-black/40 border border-white/10 p-4 rounded-2xl space-y-2">
-                        <span class="text-[10px] font-orbitron text-[#00ffcc] uppercase font-bold flex items-center gap-1.5">
-                            <i class="fa-brands fa-youtube text-sm text-[#FF0000]"></i> Nuevo Video en YouTube
-                        </span>
-                        <h4 class="font-orbitron font-bold text-white text-sm">Tutoriales de Renovación y Soporte</h4>
-                        <p class="text-gray-400 text-xs">Guías paso a paso para mejorar tu comunidad de Discord y solucionar errores de código.</p>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -280,7 +290,7 @@
                         </div>
                         <h2 class="font-orbitron text-xl sm:text-3xl font-black text-white">Zona DEV - Panel de Control</h2>
                     </div>
-                    <button onclick="lockDevZone()" class="px-3 py-2 bg-red-500/20 hover:bg-red-500/40 border border-red-500/50 text-red-400 text-xs font-bold rounded-xl transition flex items-center space-x-1">
+                    <button onclick="lockDevZone()" class="px-3 py-2 bg-red-500/20 hover:bg-red-500/40 border border-red-500/50 text-red-400 text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer">
                         <i class="fa-solid fa-lock"></i><span class="font-orbitron">Bloquear</span>
                     </button>
                 </div>
@@ -288,7 +298,7 @@
                     <h3 class="font-orbitron text-sm font-bold text-white">Consola de Comandos Rápida</h3>
                     <div class="flex gap-2">
                         <input type="text" id="dev-console-input" placeholder="Escribe un comando..." class="flex-grow bg-[#05050b] border border-white/20 rounded-xl px-4 py-3 text-white text-xs outline-none focus:border-[#9d00ff]">
-                        <button onclick="executeDevCommand()" class="px-5 py-3 bg-[#9d00ff] hover:bg-[#8000cc] text-white font-orbitron font-bold rounded-xl text-xs transition shrink-0">Ejecutar</button>
+                        <button onclick="executeDevCommand()" class="px-5 py-3 bg-[#9d00ff] hover:bg-[#8000cc] text-white font-orbitron font-bold rounded-xl text-xs transition shrink-0 cursor-pointer shadow-[0_0_15px_rgba(157,0,255,0.3)]">Ejecutar</button>
                     </div>
                 </div>
             </div>
@@ -303,18 +313,18 @@
 
     <!-- MODAL DEV -->
     <div id="dev-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-panel p-6 sm:p-8 rounded-3xl w-full max-w-sm space-y-5 border-[#9d00ff]/60">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl w-full max-w-sm space-y-5 border-[#9d00ff]/60 shadow-[0_0_30px_rgba(157,0,255,0.4)]">
             <div class="flex justify-between items-center">
                 <h3 class="font-orbitron text-lg font-bold text-white flex items-center"><i class="fa-solid fa-shield-halved text-[#9d00ff] mr-2"></i>Zona DEV</h3>
-                <button onclick="closeDevModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeDevModal()" class="text-gray-400 hover:text-white p-1 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <p class="text-xs text-gray-300">Introduce la contraseña de administrador:</p>
             <input type="password" id="dev-password-input" placeholder="Contraseña" class="w-full bg-[#05050b]/90 border border-white/20 rounded-xl px-4 py-3 text-white focus:border-[#9d00ff] outline-none text-xs">
-            <button onclick="verifyDevPassword()" class="w-full py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-extrabold rounded-xl transition uppercase tracking-wider text-xs">Desbloquear</button>
+            <button onclick="verifyDevPassword()" class="w-full py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-extrabold rounded-xl transition uppercase tracking-wider text-xs cursor-pointer shadow-[0_0_15px_rgba(157,0,255,0.4)]">Desbloquear</button>
         </div>
     </div>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT CON EFECTOS VISUALES MEJORADOS -->
     <script>
         let isDiscordLoggedIn = false;
         let isDevUnlocked = false;
@@ -328,9 +338,13 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            switchTab('lobby');
-            renderBotsGrid();
-            handleDiscordAuthRedirect();
+            try {
+                switchTab('lobby');
+                renderBotsGrid();
+                handleDiscordAuthRedirect();
+            } catch (err) {
+                console.error("Error al inicializar la app:", err);
+            }
         });
 
         function closeBetaBanner() {
@@ -344,39 +358,45 @@
         }
 
         async function handleDiscordAuthRedirect() {
-            const fragment = window.location.hash.substring(1);
-            const params = new URLSearchParams(fragment);
-            const accessToken = params.get('access_token');
+            try {
+                const fragment = window.location.hash.substring(1);
+                if (!fragment) {
+                    const savedUser = localStorage.getItem('obi_discord_user');
+                    if (savedUser) {
+                        const userData = JSON.parse(savedUser);
+                        if (userData && userData.id) {
+                            isDiscordLoggedIn = true;
+                            updateDiscordButtonUI(userData);
+                        }
+                    }
+                    return;
+                }
+                const params = new URLSearchParams(fragment);
+                const accessToken = params.get('access_token');
 
-            if (accessToken) {
-                try {
+                if (accessToken) {
                     const response = await fetch('https://discord.com/api/users/@me', {
                         headers: { authorization: `Bearer ${accessToken}` }
                     });
                     const userData = await response.json();
-                    if (userData.id) {
+                    if (userData && userData.id) {
                         isDiscordLoggedIn = true;
                         localStorage.setItem('obi_discord_user', JSON.stringify(userData));
-                        const discordBtn = document.getElementById('discord-login-btn');
-                        const avatarUrl = userData.avatar ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png` : '';
-                        discordBtn.innerHTML = `<img src="${avatarUrl}" class="w-4 h-4 rounded-full object-cover"><span class="font-orbitron text-[10px]">${userData.username}</span>`;
-                        discordBtn.className = "px-2.5 sm:px-3 py-2 bg-green-600 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1";
+                        updateDiscordButtonUI(userData);
                         window.history.replaceState({}, document.title, window.location.pathname);
                     }
-                } catch (e) { console.error(e); }
-            } else {
-                const savedUser = localStorage.getItem('obi_discord_user');
-                if (savedUser) {
-                    const userData = JSON.parse(savedUser);
-                    if (userData.id) {
-                        isDiscordLoggedIn = true;
-                        const discordBtn = document.getElementById('discord-login-btn');
-                        const avatarUrl = userData.avatar ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png` : '';
-                        discordBtn.innerHTML = `<img src="${avatarUrl}" class="w-4 h-4 rounded-full object-cover"><span class="font-orbitron text-[10px]">${userData.username}</span>`;
-                        discordBtn.className = "px-2.5 sm:px-3 py-2 bg-green-600 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1";
-                    }
                 }
+            } catch (e) { 
+                console.error("Error en la autenticación de Discord:", e); 
             }
+        }
+
+        function updateDiscordButtonUI(userData) {
+            const discordBtn = document.getElementById('discord-login-btn');
+            if (!discordBtn) return;
+            const avatarUrl = userData.avatar ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png` : '';
+            discordBtn.innerHTML = `<img src="${avatarUrl}" class="w-4 h-4 rounded-full object-cover"><span class="font-orbitron text-[10px]">${userData.username}</span>`;
+            discordBtn.className = "px-2.5 sm:px-3 py-2 bg-green-600 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_15px_rgba(22,163,74,0.4)]";
         }
 
         function switchTab(tabId) {
@@ -388,9 +408,47 @@
                 openDevModal();
                 return;
             }
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Ocultar y limpiar animaciones de todas las secciones
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('tab-animate');
+            });
+            
+            // Mostrar la sección seleccionada con efecto de aparición fluida
             const target = document.getElementById('tab-' + tabId);
-            if(target) target.classList.remove('hidden');
+            if(target) {
+                target.classList.remove('hidden');
+                void target.offsetWidth; // Forzar reflow para reiniciar la animación CSS
+                target.classList.add('tab-animate');
+            }
+            
+            // Actualizar la luz activa en escritorio con efecto parpadeante/neón (active-nav-glow)
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.getAttribute('data-target') === tabId) {
+                    btn.className = "nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer active-nav-glow";
+                } else {
+                    btn.className = "nav-btn px-4 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white border border-transparent";
+                }
+            });
+
+            // Actualizar la luz activa en móvil con brillo de neón
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if(btn.getAttribute('data-target') === tabId) {
+                    if(tabId === 'devzone') {
+                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-[#9d00ff] drop-shadow-[0_0_8px_rgba(157,0,255,0.8)] scale-110 transition-transform";
+                    } else {
+                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-[#00ffcc] drop-shadow-[0_0_8px_rgba(0,255,204,0.8)] scale-110 transition-transform";
+                    }
+                } else {
+                    if(btn.getAttribute('data-target') === 'devzone') {
+                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 hidden";
+                    } else {
+                        btn.className = "mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400";
+                    }
+                }
+            });
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -400,7 +458,7 @@
             container.innerHTML = botsList.map(bot => `
                 <div class="glass-panel p-5 rounded-2xl space-y-3 border-indigo-500/30">
                     <div class="flex items-center space-x-3">
-                        <img src="${bot.avatar}" class="w-10 h-10 rounded-xl object-cover border border-[#5865F2]">
+                        <img src="${bot.avatar}" class="w-10 h-10 rounded-xl object-cover border border-[#5865F2] shadow-[0_0_10px_rgba(88,101,242,0.4)]">
                         <div>
                             <h4 class="font-orbitron font-bold text-white text-sm">${bot.name}</h4>
                             <span class="text-[9px] text-indigo-400 font-mono">ID: ${bot.id}</span>
@@ -410,14 +468,23 @@
             `).join('');
         }
 
-        function openDevModal() { document.getElementById('dev-modal').classList.remove('hidden'); }
-        function closeDevModal() { document.getElementById('dev-modal').classList.add('hidden'); }
+        function openDevModal() { 
+            const modal = document.getElementById('dev-modal');
+            if(modal) modal.classList.remove('hidden'); 
+        }
+        
+        function closeDevModal() { 
+            const modal = document.getElementById('dev-modal');
+            if(modal) modal.classList.add('hidden'); 
+        }
 
         function verifyDevPassword() {
-            if(document.getElementById('dev-password-input').value === DEV_PASS) {
+            const input = document.getElementById('dev-password-input');
+            if(input && input.value === DEV_PASS) {
                 isDevUnlocked = true;
                 closeDevModal();
-                document.getElementById('mobile-dev-tab-btn').classList.remove('hidden');
+                const mobileDevBtn = document.getElementById('mobile-dev-tab-btn');
+                if(mobileDevBtn) mobileDevBtn.classList.remove('hidden');
                 switchTab('devzone');
             } else {
                 alert('Contraseña incorrecta');
@@ -426,15 +493,16 @@
 
         function lockDevZone() {
             isDevUnlocked = false;
-            document.getElementById('mobile-dev-tab-btn').classList.add('hidden');
+            const mobileDevBtn = document.getElementById('mobile-dev-tab-btn');
+            if(mobileDevBtn) mobileDevBtn.classList.add('hidden');
             switchTab('lobby');
         }
 
         function executeDevCommand() {
-            const val = document.getElementById('dev-console-input').value;
-            if(!val) return;
-            alert(`Comando ejecutado: "${val}"`);
-            document.getElementById('dev-console-input').value = '';
+            const input = document.getElementById('dev-console-input');
+            if(!input || !input.value) return;
+            alert(`Comando ejecutado: "${input.value}"`);
+            input.value = '';
         }
     </script>
 </body>
