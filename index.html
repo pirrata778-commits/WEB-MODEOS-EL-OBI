@@ -72,6 +72,86 @@
         .tab-animate {
             animation: cyberFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        .dev-logo-mark {
+            width: 1.65rem;
+            height: 1.65rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 255, 204, 0.65);
+            border-radius: 0.55rem;
+            background: linear-gradient(135deg, rgba(157, 0, 255, 0.45), rgba(0, 255, 204, 0.18));
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 900;
+            line-height: 1;
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.9);
+            box-shadow: 0 0 12px rgba(157, 0, 255, 0.35), inset 0 0 8px rgba(0, 255, 204, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #dev-trigger-btn:hover .dev-logo-mark {
+            transform: rotate(-8deg) scale(1.1);
+            box-shadow: 0 0 18px rgba(0, 255, 204, 0.7), inset 0 0 10px rgba(157, 0, 255, 0.35);
+        }
+
+        .dev-logo-mark.authenticated {
+            border-color: #00ffcc;
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.5), rgba(16, 185, 129, 0.35));
+            box-shadow: 0 0 18px rgba(0, 255, 204, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-stack-strip {
+            display: none;
+            align-items: center;
+            gap: 0.35rem;
+            margin-left: 0.75rem;
+        }
+
+        .tech-logo {
+            min-width: 2.15rem;
+            height: 1.65rem;
+            padding: 0 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            border: 1px solid currentColor;
+            border-radius: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 900;
+            letter-spacing: 0.03em;
+            box-shadow: 0 0 9px currentColor;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+
+        .tech-logo i {
+            font-size: 0.8rem;
+        }
+
+        .tech-logo b {
+            font-size: 0.48rem;
+        }
+
+        .tech-logo:hover {
+            transform: translateY(-3px) rotate(-3deg) scale(1.08);
+            filter: brightness(1.35);
+        }
+
+        .tech-js { color: #f7df1e; background: rgba(247, 223, 30, 0.12); }
+        .tech-py { color: #4cc9f0; background: rgba(55, 118, 171, 0.2); }
+        .tech-ts { color: #5aa9ff; background: rgba(49, 120, 198, 0.18); }
+        .tech-txt { color: #d8dee9; background: rgba(216, 222, 233, 0.1); }
+        .tech-http { color: #ff9f43; background: rgba(255, 159, 67, 0.12); }
+        .tech-https { color: #00ffcc; background: rgba(0, 255, 204, 0.12); }
+
+        @media (min-width: 768px) {
+            .tech-stack-strip { display: flex; }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col cyber-grid relative selection:bg-[#00ffcc] selection:text-black">
@@ -97,13 +177,21 @@
                 <span class="font-orbitron font-black text-white text-xs sm:text-base tracking-wider block leading-tight">MODEOS <span class="text-[#00ffcc] glow-text">EL OBI</span></span>
                 <span class="text-[8px] sm:text-[9px] text-purple-400 font-orbitron font-bold uppercase tracking-widest block leading-tight">© 2026 Todos los derechos reservados</span>
             </div>
+            <div class="tech-stack-strip" aria-label="Tecnologías compatibles">
+                <span class="tech-logo tech-js" title="JavaScript"><i class="fa-brands fa-js"></i><b>.JS</b></span>
+                <span class="tech-logo tech-py" title="Python"><i class="fa-brands fa-python"></i><b>.PY</b></span>
+                <span class="tech-logo tech-ts" title="TypeScript"><i class="fa-solid fa-code"></i><b>.TS</b></span>
+                <span class="tech-logo tech-txt" title="Texto plano"><i class="fa-solid fa-file-lines"></i><b>.TXT</b></span>
+                <span class="tech-logo tech-http" title="HTTP"><i class="fa-solid fa-globe"></i><b>.HTTP</b></span>
+                <span class="tech-logo tech-https" title="HTTPS seguro"><i class="fa-solid fa-shield-halved"></i><b>.HTTPS</b></span>
+            </div>
         </div>
 
         <div class="hidden md:flex items-center space-x-1 bg-[#0a0a16]/90 border border-white/10 rounded-full p-1.5 shadow-inner backdrop-blur-xl">
             <button onclick="switchTab('lobby')" class="nav-btn px-3 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-1.5 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="lobby">
                 <i class="fa-solid fa-network-wired text-sm"></i><span>Lobby</span>
             </button>
-            <button onclick="switchTab('modeos')" class="nav-btn px-3 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-1.5 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="modelos">
+            <button onclick="switchTab('modeos')" class="nav-btn px-3 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-1.5 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="modeos">
                 <i class="fa-solid fa-code text-sm"></i><span>Modeos</span>
             </button>
             <button onclick="switchTab('directos')" class="nav-btn px-3 py-2 rounded-full text-xs font-orbitron font-bold transition-all flex items-center space-x-1.5 cursor-pointer text-gray-400 hover:text-white border border-transparent" data-target="directos">
@@ -118,8 +206,8 @@
         </div>
 
         <div class="flex items-center space-x-2">
-            <button id="dev-trigger-btn" onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
-                <i class="fa-solid fa-lock text-xs" id="dev-lock-icon"></i><span class="font-orbitron text-[10px] sm:text-xs">DEV</span>
+            <button id="dev-trigger-btn" onclick="openDevModal()" class="px-2.5 sm:px-3 py-2 bg-[#9d00ff]/20 hover:bg-[#9d00ff]/35 border border-[#9d00ff]/50 text-[#00ffcc] text-xs font-bold rounded-xl transition flex items-center space-x-1.5 cursor-pointer shadow-[0_0_10px_rgba(157,0,255,0.2)]">
+                <span class="dev-logo-mark" id="dev-lock-icon" aria-hidden="true">&lt;/&gt;</span><span class="font-orbitron text-[10px] sm:text-xs tracking-wider">DEV</span>
             </button>
             <button id="discord-login-btn" onclick="loginDiscord()" class="px-2.5 sm:px-3 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5 cursor-pointer shadow-[0_0_15px_rgba(88,101,242,0.4)]">
                 <i class="fa-brands fa-discord text-xs"></i><span id="discord-btn-text" class="font-orbitron text-[10px] sm:text-xs">Login Discord</span>
@@ -133,7 +221,7 @@
             <i class="fa-solid fa-network-wired text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Lobby</span>
         </button>
-        <button onclick="switchTab('modeos')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="modelos">
+        <button onclick="switchTab('modeos')" class="mobile-nav-btn flex flex-col items-center p-1 cursor-pointer text-gray-400 transition-colors" data-target="modeos">
             <i class="fa-solid fa-code text-sm mb-0.5"></i>
             <span class="text-[8px] font-bold font-orbitron">Modelos</span>
         </button>
@@ -191,7 +279,7 @@
                         Desarrollo de bots a medida, creación y renovación integral de servidores de Discord bajo protocolos cifrados HTTPS. Propiedad intelectual protegida.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                        <button onclick="switchTab('modelos')" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-bold text-xs rounded-2xl transition hover:scale-105 shadow-[0_0_20px_rgba(157,0,255,0.4)] flex items-center justify-center space-x-2 cursor-pointer">
+                        <button onclick="switchTab('modeos')" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-[#9d00ff] to-purple-600 text-white font-orbitron font-bold text-xs rounded-2xl transition hover:scale-105 shadow-[0_0_20px_rgba(157,0,255,0.4)] flex items-center justify-center space-x-2 cursor-pointer">
                             <span>Ver Servicios y Modelos</span><i class="fa-solid fa-arrow-right"></i>
                         </button>
                         <button onclick="switchTab('dashboard')" class="w-full sm:w-auto px-6 py-3.5 bg-black/80 border border-[#00ffcc]/50 text-[#00ffcc] font-orbitron font-bold text-xs rounded-2xl transition hover:scale-105 shadow-[0_0_15px_rgba(0,255,204,0.2)] flex items-center justify-center space-x-2 cursor-pointer">
@@ -400,6 +488,24 @@
                         <span>El equipo oficial de MODEOS EL OBI <strong>nunca</strong> te pedirá tokens ni contraseñas por mensaje privado. Mantén tus credenciales protegidas.</span>
                     </div>
                 </div>
+
+                <div class="pt-4 border-t border-white/10 space-y-3">
+                    <div>
+                        <h3 class="font-orbitron font-bold text-white text-sm flex items-center">
+                            <i class="fa-solid fa-image text-[#00ffcc] mr-2"></i>Banner de MODEOS EL OBI
+                        </h3>
+                        <p class="text-xs text-gray-400 mt-1">Selecciona desde tus archivos el banner que quieres mostrar en esta sección.</p>
+                    </div>
+                    <label id="support-banner-uploader" for="support-banner-file" class="flex flex-col items-center justify-center w-full min-h-32 p-4 rounded-2xl border border-dashed border-[#00ffcc]/40 bg-black/40 hover:bg-[#00ffcc]/10 transition cursor-pointer group opacity-50">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-[#00ffcc] mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span id="support-banner-uploader-title" class="font-orbitron text-xs font-bold text-white">Inicia sesión DEV para subir un banner</span>
+                        <span class="text-[10px] text-gray-400 mt-1">PNG, JPG o WEBP</span>
+                        <input type="file" id="support-banner-file" accept="image/png,image/jpeg,image/webp" onchange="handleSupportBannerUpload(event)" class="hidden" disabled>
+                    </label>
+                    <div id="support-banner-preview-wrapper" class="hidden relative overflow-hidden rounded-2xl border border-[#00ffcc]/30 bg-black/70 aspect-video">
+                        <img id="support-banner-preview" src="" alt="Banner de MODEOS EL OBI" class="w-full h-full object-cover">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -528,6 +634,54 @@
                     </div>
                 </div>
 
+                <div class="space-y-4 pt-4 border-t border-[#00ffcc]/30">
+                    <div class="flex flex-col sm:flex-row justify-between gap-3 sm:items-center">
+                        <div>
+                            <h3 class="font-orbitron text-sm font-bold text-white flex items-center">
+                                <i class="fa-solid fa-satellite-dish text-[#00ffcc] mr-2"></i>Centro de Control de Bots
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-1">Supervisa eventos y envía comandos mediante tu backend seguro de Discord.</p>
+                        </div>
+                        <span id="discord-bot-connection" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-yellow-500/40 bg-yellow-500/10 text-yellow-300 text-[10px] font-orbitron font-bold">
+                            <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>BACKEND SIN CONECTAR
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="p-4 bg-black/70 border border-[#00ffcc]/25 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-orbitron text-xs font-bold text-[#00ffcc] flex items-center">
+                                    <i class="fa-solid fa-wave-square mr-2"></i>Logs en tiempo real
+                                </h4>
+                                <button onclick="clearBotLiveLogs()" class="text-[10px] text-gray-400 hover:text-white transition cursor-pointer" title="Limpiar logs">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                            <div id="bot-live-logs" class="bg-[#020507] border border-white/10 rounded-xl p-3 font-mono text-[10px] text-emerald-300 h-56 overflow-y-auto space-y-1.5">
+                                <div class="text-gray-500">[SYSTEM] Esperando conexión con /api/discord/logs...</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-black/70 border border-[#9d00ff]/30 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-orbitron text-xs font-bold text-purple-300 flex items-center">
+                                    <i class="fa-solid fa-terminal mr-2"></i>Terminal de comandos
+                                </h4>
+                                <span class="text-[10px] text-gray-500 font-mono">API segura</span>
+                            </div>
+                            <div id="bot-terminal-output" class="bg-[#020507] border border-white/10 rounded-xl p-3 font-mono text-[10px] text-gray-300 h-40 overflow-y-auto space-y-1.5">
+                                <div class="text-gray-500">[SYSTEM] Los comandos se enviarán al backend del bot.</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" id="bot-command-input" placeholder="Ej: !ping" onkeydown="if (event.key === 'Enter') runBotCommand()" class="min-w-0 flex-1 bg-[#05050b] border border-white/20 rounded-xl px-3 py-2 text-white text-xs font-mono outline-none focus:border-[#00ffcc]">
+                                <button onclick="runBotCommand()" class="px-3 py-2 bg-[#9d00ff]/25 hover:bg-[#9d00ff]/45 border border-[#9d00ff]/50 text-purple-200 rounded-xl text-xs cursor-pointer" title="Enviar comando">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="space-y-4 pt-4 border-t border-[#9d00ff]/30 pb-2">
                     <div>
                         <h3 class="font-orbitron text-sm font-bold text-white flex items-center">
@@ -646,7 +800,8 @@
             </div>
             <div class="space-y-3">
                 <input type="password" id="dev-password-input" placeholder="Contraseña de Desarrollador..." class="w-full bg-[#05050b] border border-white/20 rounded-2xl px-4 py-3 text-white text-xs font-mono outline-none focus:border-[#9d00ff] shadow-inner">
-                <div id="dev-error-msg" class="text-red-400 text-xs font-orbitron hidden">Contraseña incorrecta. Inténtalo de nuevo.</div>
+                <div id="dev-error-msg" class="text-red-400 text-xs font-orbitron hidden"></div>
+                <div id="dev-attempts-msg" class="text-yellow-300 text-[10px] font-orbitron hidden"></div>
             </div>
             <div class="flex space-x-3 pt-2">
                 <button onclick="closeDevModal()" class="w-1/2 py-3 bg-black/50 hover:bg-black/80 border border-white/10 rounded-2xl text-xs font-orbitron font-bold text-gray-300 transition cursor-pointer">Cancelar</button>
@@ -719,6 +874,8 @@
     <!-- SCRIPT PRINCIPAL UNIFICADO -->
     <script>
         const DISCORD_CLIENT_ID = "TU_CLIENT_ID_AQUI"; 
+        const DISCORD_BOT_API_BASE = "/api/discord";
+        let discordBotLogStream = null;
 
         function secureHashEncode(str) {
             try { return btoa(encodeURIComponent(str) + "_obi_sec_2026"); } catch(e) { return str; }
@@ -746,6 +903,8 @@
         }
 
         let isDevAuthenticated = false;
+        let devFailedAttempts = Number(localStorage.getItem('obi_dev_failed_attempts') || 0);
+        let devAccessLocked = localStorage.getItem('obi_dev_access_locked') === 'true';
         let discordUser = JSON.parse(localStorage.getItem('obi_discord_user')) || null;
 
         function updateDiscordAuthUI() {
@@ -791,6 +950,7 @@
             localStorage.removeItem('obi_discord_user');
             discordUser = null;
             updateDiscordAuthUI();
+            updateSupportBannerUploader();
             switchTab('lobby');
             alert('Has cerrado sesión de Discord de forma segura.');
         }
@@ -830,13 +990,19 @@
                 { key: 'obi_img_lobby', id: 'img-lobby-banner' },
                 { key: 'obi_img_modelos1', id: 'img-modelos-1' },
                 { key: 'obi_img_modelos2', id: 'img-modelos-2' },
-                { key: 'obi_img_directos', id: 'img-directos-banner' }
+                { key: 'obi_img_directos', id: 'img-directos-banner' },
+                { key: 'obi_support_banner', id: 'support-banner-preview' }
             ];
             mappings.forEach(m => {
                 const saved = localStorage.getItem(m.key);
                 if (saved) {
                     const el = document.getElementById(m.id);
-                    if (el) el.src = saved;
+                    if (el) {
+                        el.src = saved;
+                        if (m.id === 'support-banner-preview') {
+                            document.getElementById('support-banner-preview-wrapper').classList.remove('hidden');
+                        }
+                    }
                 }
             });
         });
@@ -904,13 +1070,6 @@
         }
 
         function switchTab(tabId) {
-            if (tabId === 'dashboard' && !discordUser) {
-                document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-                document.getElementById('tab-dashboard').classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                return;
-            }
-
             if (tabId === 'devzone' && !isDevAuthenticated) {
                 openDevModal();
                 return;
@@ -937,6 +1096,7 @@
         }
 
         switchTab('lobby');
+        if (devAccessLocked) hideDevPasswordAccess();
 
         function acceptAllCookies() {
             localStorage.setItem('obi_cookie_consent', 'all');
@@ -1048,9 +1208,15 @@
                 switchTab('devzone');
                 return;
             }
+            if (devAccessLocked) {
+                hideDevPasswordAccess();
+                return;
+            }
             document.getElementById('dev-modal').classList.remove('hidden');
             document.getElementById('dev-password-input').value = '';
             document.getElementById('dev-error-msg').classList.add('hidden');
+            document.getElementById('dev-attempts-msg').classList.remove('hidden');
+            document.getElementById('dev-attempts-msg').innerText = `Intentos restantes: ${5 - devFailedAttempts}`;
         }
 
         function closeDevModal() {
@@ -1058,28 +1224,79 @@
         }
 
         function verifyDevPassword() {
+            if (devAccessLocked) {
+                hideDevPasswordAccess();
+                return;
+            }
             const pwdInput = document.getElementById('dev-password-input').value.trim();
 
             if (pwdInput === "srobicho1998") {
                 isDevAuthenticated = true;
                 closeDevModal();
                 switchTab('devzone');
-                document.getElementById('dev-lock-icon').classList.remove('fa-lock');
-                document.getElementById('dev-lock-icon').classList.add('fa-lock-open');
+                document.getElementById('dev-lock-icon').classList.add('authenticated');
                 document.getElementById('mobile-dev-tab-btn').classList.remove('hidden');
+                updateSupportBannerUploader();
+                connectDiscordBotLogs();
                 logDevConsole('[AUTH] Acceso DEV autorizado correctamente.');
+                recordDevSecurityEvent('login_success');
             } else {
-                document.getElementById('dev-error-msg').classList.remove('hidden');
+                devFailedAttempts += 1;
+                localStorage.setItem('obi_dev_failed_attempts', String(devFailedAttempts));
+                recordDevSecurityEvent('login_failed', { attempts: devFailedAttempts });
+                const errorEl = document.getElementById('dev-error-msg');
+                const attemptsEl = document.getElementById('dev-attempts-msg');
+                errorEl.classList.remove('hidden');
+                attemptsEl.classList.remove('hidden');
+                if (devFailedAttempts >= 5) {
+                    devAccessLocked = true;
+                    localStorage.setItem('obi_dev_access_locked', 'true');
+                    errorEl.innerText = 'Se alcanzó el máximo de 5 intentos. El acceso DEV ha sido bloqueado.';
+                    attemptsEl.classList.add('hidden');
+                    alert('Se alcanzó el máximo de 5 intentos. La zona de contraseña DEV desaparecerá y el intento quedará registrado.');
+                    hideDevPasswordAccess();
+                    recordDevSecurityEvent('access_locked', { attempts: devFailedAttempts });
+                } else {
+                    errorEl.innerText = 'Contraseña incorrecta.';
+                    attemptsEl.innerText = `Aviso: te quedan ${5 - devFailedAttempts} intentos.`;
+                }
                 logDevConsole('[AUTH_FAIL] Intento de acceso DEV fallido.');
             }
+        }
+
+        function hideDevPasswordAccess() {
+            closeDevModal();
+            document.getElementById('dev-trigger-btn').classList.add('hidden');
+            document.getElementById('mobile-dev-tab-btn').classList.add('hidden');
+        }
+
+        function recordDevSecurityEvent(type, details = {}) {
+            const event = {
+                type,
+                details,
+                timestamp: new Date().toISOString()
+            };
+            const storedEvents = JSON.parse(localStorage.getItem('obi_dev_security_logs') || '[]');
+            storedEvents.push(event);
+            localStorage.setItem('obi_dev_security_logs', JSON.stringify(storedEvents.slice(-100)));
+
+            fetch('/api/dev/security-logs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify(event)
+            }).catch(() => {
+                // El registro local queda como respaldo mientras no exista el backend.
+            });
         }
 
         function lockDevZone() {
             isDevAuthenticated = false;
             switchTab('lobby');
-            document.getElementById('dev-lock-icon').classList.remove('fa-lock-open');
-            document.getElementById('dev-lock-icon').classList.add('fa-lock');
+            document.getElementById('dev-lock-icon').classList.remove('authenticated');
             document.getElementById('mobile-dev-tab-btn').classList.add('hidden');
+            updateSupportBannerUploader();
+            disconnectDiscordBotLogs();
             logDevConsole('[AUTH] Sesión DEV bloqueada.');
         }
 
@@ -1117,6 +1334,135 @@
             } catch(err) {
                 alert('Error al guardar el enlace en el almacenamiento local.');
             }
+        }
+
+        function handleSupportBannerUpload(event) {
+            if (!isDevAuthenticated) {
+                event.target.value = '';
+                alert('Inicia sesión en DEV para subir el banner.');
+                return;
+            }
+
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                try {
+                    localStorage.setItem('obi_support_banner', dataUrl);
+                    document.getElementById('support-banner-preview').src = dataUrl;
+                    document.getElementById('support-banner-preview-wrapper').classList.remove('hidden');
+                } catch (error) {
+                    alert('El banner es demasiado pesado para guardarlo en este navegador.');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateSupportBannerUploader() {
+            const uploader = document.getElementById('support-banner-uploader');
+            const input = document.getElementById('support-banner-file');
+            const title = document.getElementById('support-banner-uploader-title');
+            if (!uploader || !input || !title) return;
+
+            input.disabled = !isDevAuthenticated;
+            uploader.classList.toggle('opacity-50', !isDevAuthenticated);
+            uploader.classList.toggle('cursor-not-allowed', !isDevAuthenticated);
+            uploader.classList.toggle('cursor-pointer', isDevAuthenticated);
+            title.innerText = isDevAuthenticated
+                ? 'Elegir banner desde mis archivos'
+                : 'Inicia sesión DEV para subir un banner';
+        }
+
+        function setDiscordBotConnection(status, message, color) {
+            const connectionEl = document.getElementById('discord-bot-connection');
+            if (!connectionEl) return;
+            connectionEl.className = `inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border ${color}`;
+            connectionEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-current animate-pulse"></span>${message}`;
+            connectionEl.dataset.status = status;
+        }
+
+        function appendBotLog(message, tone = 'text-emerald-300') {
+            const logsEl = document.getElementById('bot-live-logs');
+            if (!logsEl) return;
+            const line = document.createElement('div');
+            line.className = tone;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsEl.appendChild(line);
+            logsEl.scrollTop = logsEl.scrollHeight;
+        }
+
+        function appendBotTerminal(message, tone = 'text-gray-300') {
+            const terminalEl = document.getElementById('bot-terminal-output');
+            if (!terminalEl) return;
+            const line = document.createElement('div');
+            line.className = tone;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            terminalEl.appendChild(line);
+            terminalEl.scrollTop = terminalEl.scrollHeight;
+        }
+
+        function connectDiscordBotLogs() {
+            if (!isDevAuthenticated || typeof EventSource === 'undefined') return;
+            disconnectDiscordBotLogs();
+            setDiscordBotConnection('connecting', 'CONECTANDO...', 'border-yellow-500/40 bg-yellow-500/10 text-yellow-300 text-[10px] font-orbitron font-bold');
+            discordBotLogStream = new EventSource(`${DISCORD_BOT_API_BASE}/logs`);
+            discordBotLogStream.onopen = () => {
+                setDiscordBotConnection('connected', 'BOT CONECTADO', 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 text-[10px] font-orbitron font-bold');
+                appendBotLog('Conexión de logs establecida.');
+            };
+            discordBotLogStream.onmessage = event => {
+                try {
+                    const payload = JSON.parse(event.data);
+                    appendBotLog(payload.message || event.data, payload.level === 'error' ? 'text-red-300' : 'text-emerald-300');
+                } catch (error) {
+                    appendBotLog(event.data);
+                }
+            };
+            discordBotLogStream.onerror = () => {
+                setDiscordBotConnection('error', 'BACKEND SIN CONECTAR', 'border-red-500/40 bg-red-500/10 text-red-300 text-[10px] font-orbitron font-bold');
+                appendBotLog('No se pudo conectar con el stream de logs.', 'text-red-300');
+            };
+        }
+
+        function disconnectDiscordBotLogs() {
+            if (!discordBotLogStream) return;
+            discordBotLogStream.close();
+            discordBotLogStream = null;
+        }
+
+        async function runBotCommand() {
+            if (!isDevAuthenticated) {
+                appendBotTerminal('Acceso denegado: inicia sesión DEV.', 'text-red-300');
+                return;
+            }
+
+            const input = document.getElementById('bot-command-input');
+            const command = input.value.trim();
+            if (!command) return;
+
+            appendBotTerminal(`$ ${command}`, 'text-[#00ffcc]');
+            input.value = '';
+
+            try {
+                const response = await fetch(`${DISCORD_BOT_API_BASE}/commands`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ command })
+                });
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
+                appendBotTerminal(payload.output || 'Comando enviado al bot.', 'text-emerald-300');
+            } catch (error) {
+                appendBotTerminal(`No disponible: ${error.message}. Configura el backend Discord.`, 'text-red-300');
+            }
+        }
+
+        function clearBotLiveLogs() {
+            const logsEl = document.getElementById('bot-live-logs');
+            if (logsEl) logsEl.innerHTML = '<div class="text-gray-500">[SYSTEM] Logs limpiados.</div>';
         }
 
         function logDevConsole(text) {
